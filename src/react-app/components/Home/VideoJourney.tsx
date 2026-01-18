@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Play, CheckCircle2, Calendar, TrendingDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../../styles/ThemeProvider';
@@ -17,6 +17,20 @@ const VideoJourney: React.FC = () => {
   const text = mode === 'clear' ? 'text-gray-900' : 'text-white';
   const textSub = mode === 'clear' ? 'text-brand-dark/60' : 'text-white/60';
   const cardBg = mode === 'clear' ? 'bg-white border border-gray-200' : 'bg-brand-elevated border border-white/10';
+
+  // State for current video step and completion
+  const [currentStep, setCurrentStep] = useState(0);
+  const [completed, setCompleted] = useState(false);
+
+  // Handler for advancing to next video or completing journey
+  const handleNext = () => {
+    if (currentStep < videos.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      setCompleted(true);
+    }
+  };
+
   return (
     <section id="video-section" className={`py-24 ${bg} relative overflow-hidden`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
