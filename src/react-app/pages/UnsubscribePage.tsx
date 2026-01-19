@@ -12,7 +12,7 @@ import { MailX, CheckCircle2, AlertCircle, ArrowLeft, Loader2 } from 'lucide-rea
 
 import Header from '../components/Header';
 import ScrollToTopButton from '../components/ScrollToTopButton';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import { useTheme } from '../../styles/ThemeProvider';
 
 
@@ -108,11 +108,7 @@ export const UnsubscribePage: React.FC = () => {
             )}
           </div>
         </main>
-        <Footer className={`border-t ${footerBorder} mt-auto`}>
-          <p className={`text-xs ${footerText}`}>
-            © 2024 Hermida Maia Advocacia. Todos os direitos reservados.
-          </p>
-        </Footer>
+        {/* Footer is now rendered globally in App.tsx */}
       </div>
       <ScrollToTopButton />
     </>

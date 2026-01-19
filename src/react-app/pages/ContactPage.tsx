@@ -34,7 +34,13 @@ const ContactPage = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ formId: 'contact_form', ...formData }),
       });
-
+      if (!response.ok) {
+        setStatus({
+          type: 'error',
+          message: 'Erro ao enviar mensagem. Tente novamente.'
+        });
+        return;
+      }
       const result = await response.json();
       if (result.success) {
         setStatus({
@@ -187,13 +193,7 @@ const ContactPage = () => {
         </main>
 
         {/* Footer Simples */}
-        <footer className="bg-brand-dark py-12 border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <p className="text-white/20 text-xs">
-              © 2024 Hermida Maia Advocacia. Todos os direitos reservados.
-            </p>
-          </div>
-        </footer>
+        {/* Footer is now rendered globally in App.tsx */}
       </div>
       <ScrollToTopButton />
     </>

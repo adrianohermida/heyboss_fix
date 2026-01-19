@@ -26,11 +26,24 @@ const ContactPage2: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ formId: 'contact_form', ...formData }),
       });
+      if (!response.ok) {
+        setStatus({
+          type: 'error',
+          message: 'Erro ao enviar mensagem. Tente novamente.'
+        });
+        return;
+      }
       const result = await response.json();
       if (result.success) {
-        setStatus({ type: 'success', message: 'Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.' });
+        setStatus({
+          type: 'success',
+          message: 'Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.'
+        });
       } else {
-        setStatus({ type: 'error', message: result.message || 'Ocorreu um erro ao enviar sua mensagem. Tente novamente.' });
+        setStatus({
+          type: 'error',
+          message: result.message || 'Ocorreu um erro ao enviar sua mensagem. Tente novamente.'
+        });
       }
     } catch {
       setStatus({ type: 'error', message: 'Erro de conexão. Verifique sua internet e tente novamente.' });

@@ -42,22 +42,30 @@ const AppointmentsPage: React.FC = () => {
 
   useEffect(() => {
     fetch('/api/appointments/profissionais')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao buscar profissionais');
+        return res.json();
+      })
       .then(data => {
         setProfissionais(data);
         if (data.length > 0) setSelectedProf(data[0]);
-      });
+      })
+      .catch(() => setProfissionais([]));
   }, []);
 
   useEffect(() => {
     if (selectedDate && selectedProf) {
       setLoading(true);
       fetch(`/api/appointments/slots?date=${selectedDate}&profId=${selectedProf.id}&type=${appointmentType}`)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Erro ao buscar horários disponíveis');
+          return res.json();
+        })
         .then(data => {
           setAvailableSlots(data);
           setLoading(false);
-        });
+        })
+        .catch(() => setLoading(false));
     }
   }, [selectedDate, selectedProf, appointmentType]);
 

@@ -31,12 +31,14 @@ const BlogPage2: React.FC = () => {
       fetch(`/api/blog${activeCategory ? `?categoria=${activeCategory}` : ''}`),
       fetch('/api/admin/blog-categories')
     ]).then(async ([postsRes, catsRes]) => {
+      if (!postsRes.ok) throw new Error('Erro ao buscar posts do blog');
+      if (!catsRes.ok) throw new Error('Erro ao buscar categorias do blog');
       const postsData = await postsRes.json();
       const catsData = await catsRes.json();
       if (Array.isArray(postsData)) setPosts(postsData);
       if (Array.isArray(catsData)) setCategories(catsData);
       setLoading(false);
-    });
+    }).catch(() => setLoading(false));
   }, [activeCategory]);
 
   const filteredPosts = posts.filter(post =>

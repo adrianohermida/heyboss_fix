@@ -35,7 +35,10 @@ const BlogPostPage = () => {
     window.scrollTo(0, 0);
     
     fetch(`/api/blog/${slug}`)
-      .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Erro ao buscar post do blog');
+          return res.json();
+        })
       .then(data => {
         if (data.error) {
           navigate('/blog');
@@ -203,13 +206,7 @@ const BlogPostPage = () => {
           </section>
         </main>
 
-        <footer className="bg-brand-dark py-12 border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <p className="text-white/20 text-xs">
-              © 2024 Hermida Maia Advocacia. Todos os direitos reservados.
-            </p>
-          </div>
-        </footer>
+        {/* Footer is now rendered globally in App.tsx */}
 
         <style>{`
           .blog-content h2 {
