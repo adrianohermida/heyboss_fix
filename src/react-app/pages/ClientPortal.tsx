@@ -35,9 +35,13 @@ const ClientPortal: React.FC = () => {
   const [appointments, setAppointments] = useState<any[]>([]);
   const [loadingAppointments, setLoadingAppointments] = useState(false);
   const [formConfigs, setFormConfigs] = useState<any>(null);
+  const [allConfigs, setAllConfigs] = useState<any>(null);
 
   useEffect(() => {
-    import('../../shared/form-configs.json').then(mod => setFormConfigs(mod.default || mod));
+    import('../../shared/form-configs.json').then(mod => {
+      setFormConfigs(mod.default?.contact_form || mod.contact_form || null);
+      setAllConfigs(mod.default || mod);
+    });
   }, []);
 
   // Função genérica para buscar dados de cada módulo
@@ -540,6 +544,15 @@ const TicketsModule = () => {
   const [reply, setReply] = useState("");
   const [sendingReply, setSendingReply] = useState(false);
   const { access_token } = useAuth();
+  const [formConfigs, setFormConfigs] = useState<any>(null);
+  const [allConfigs, setAllConfigs] = useState<any>(null);
+
+  useEffect(() => {
+    import('../../shared/form-configs.json').then(mod => {
+      setFormConfigs(mod.default?.contact_form || mod.contact_form || null);
+      setAllConfigs(mod.default || mod);
+    });
+  }, []);
 
   const fetchTickets = async () => {
     setLoading(true);
