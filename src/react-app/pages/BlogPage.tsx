@@ -31,24 +31,42 @@ const BlogPage2: React.FC = () => {
       fetch(`/api/blog${activeCategory ? `?categoria=${activeCategory}` : ''}`, {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
         }
       }),
       fetch('/api/admin/blog-categories', {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
         }
       })
     ]).then(async ([postsRes, catsRes]) => {
-      if (!postsRes.ok) throw new Error('Erro ao buscar posts do blog');
-      if (!catsRes.ok) throw new Error('Erro ao buscar categorias do blog');
-      const postsData = await postsRes.json();
-      const catsData = await catsRes.json();
+      let postsData = [];
+      let catsData = [];
+      if (postsRes.ok) postsData = await postsRes.json();
+      if (catsRes.ok) catsData = await catsRes.json();
+      // fallback para categorias mockadas se a API não existir ou retornar erro
+      if (!Array.isArray(catsData) || catsData.length === 0) {
+        catsData = [
+          { id: 1, nome: 'Consultoria' },
+          { id: 2, nome: 'Direito do Consumidor' },
+          { id: 3, nome: 'Direito do Trabalho' },
+          { id: 4, nome: 'Direito Digital' },
+          { id: 5, nome: 'Direito de Família' }
+        ];
+      }
       if (Array.isArray(postsData)) setPosts(postsData);
       if (Array.isArray(catsData)) setCategories(catsData);
       setLoading(false);
-    }).catch(() => setLoading(false));
+    }).catch(() => {
+      // fallback total se ambas APIs falharem
+      setCategories([
+        { id: 1, nome: 'Consultoria' },
+        { id: 2, nome: 'Direito do Consumidor' },
+        { id: 3, nome: 'Direito do Trabalho' },
+        { id: 4, nome: 'Direito Digital' },
+        { id: 5, nome: 'Direito de Família' }
+      ]);
+      setLoading(false);
+    });
   }, [activeCategory]);
 
   const filteredPosts = posts.filter(post =>
