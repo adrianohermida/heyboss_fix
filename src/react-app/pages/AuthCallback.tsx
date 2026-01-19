@@ -29,33 +29,48 @@
  * - No manual user interaction required - fully automated flow
  */
 
-import React from "react";
-import { useEffect } from "react";
-import { useAuth } from "@hey-boss/users-service/react";
-import { LoaderCircle } from "lucide-react";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function AuthCallback() {
-  const { notifyParentWindowWithOAuthCode } = useAuth();
+export default function AuthCallback() {
+  const navigate = useNavigate();
 
   useEffect(() => {
-    notifyParentWindowWithOAuthCode();
-  }, [notifyParentWindowWithOAuthCode]);
+    async function handleAuth() {
+      // Extrai tokens do hash
+      const hash = window.location.hash;
+      const params = new URLSearchParams(hash.replace('#', '?'));
+      const access_token = params.get('access_token');
+      const refresh_token = params.get('refresh_token');
+      if (!access_token || !refresh_token) {
+        navigate('/login?error=callback');
+        return;
+      }
+      try {
+        const { supabase } = await import('../../supabaseClient');
+        const { error } = await supabase.auth.setSession({ access_token, refresh_token });
+        if (error) {
+          navigate('/login?error=session');
+        } else {
+          // Opcional: buscar perfil e redirecionar para dashboard/admin
+          const { data } = await supabase.auth.getUser();
+          const email = data?.user?.email || '';
+          const adminEmails = ["contato@hermidamaia.adv.br", "adrianohermida@gmail.com", "admin@example.com"];
+          const isAdmin = adminEmails.some(e => e.toLowerCase() === email.toLowerCase());
+          navigate(isAdmin ? '/dashboard' : '/client-portal', { replace: true });
+        }
+      } catch {
+        navigate('/login?error=exception');
+      }
+    }
+    handleAuth();
+  }, [navigate]);
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center px-4 bg-slate-50">
-      <div className="max-w-lg w-full space-y-8 p-12 bg-white rounded-xl shadow-lg relative overflow-hidden">
-        <div className="absolute top-4 left-4">
-          <button className="flex items-center space-x-1 text-slate-500 hover:text-slate-700 transition-colors"></button>
-        </div>
-        <div className="text-center">
-          <div className="animate-spin mx-auto mb-4">
-            <LoaderCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-          </div>
-          <h2 className="text-3xl font-extrabold text-slate-900">Logging in</h2>
-          <div className="text-slate-500 mt-2">
-            Please wait, we are verifying your identity...
-          </div>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-bgPrimary text-textPrimary">
+      <div className="bg-bgElevated p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
+        <h1 className="text-2xl font-bold mb-4">Aguarde...</h1>
+        <p>Validando autenticação e redirecionando.</p>
       </div>
     </div>
   );

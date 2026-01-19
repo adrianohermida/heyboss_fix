@@ -15,18 +15,35 @@ const useResetPassword = () => {
   const inputText = mode === 'clear' ? 'text-gray-900' : 'text-white';
   const inputBorder = mode === 'clear' ? 'border-gray-200' : 'border-white/10';
 
+  // Extrai access_token do hash da URL
+  function getToken() {
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.replace('#', '?'));
+    return params.get('access_token');
+  }
+  const access_token = getToken();
+
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setSuccess('');
-    const { supabase } = await import('../../../supabaseClient');
-    const { error } = await supabase.auth.updateUser({ password });
-    if (error) {
-      setError(error.message);
-    } else {
-      setSuccess('Senha redefinida com sucesso!');
-      setTimeout(() => navigate('/login'), 3000);
+    if (!access_token) {
+      setError('Token de redefinição inválido ou expirado.');
+      setLoading(false);
+      return;
+    }
+    try {
+      const { supabase } = await import('../../../supabaseClient');
+      const { error } = await supabase.auth.updateUser({ password }, { accessToken: access_token });
+      if (error) {
+        setError(error.message);
+      } else {
+        setSuccess('Senha redefinida com sucesso! Faça login novamente.');
+        setTimeout(() => navigate('/login'), 2000);
+      }
+    } catch (err: any) {
+      setError('Erro ao redefinir senha. Tente novamente.');
     }
     setLoading(false);
   };
