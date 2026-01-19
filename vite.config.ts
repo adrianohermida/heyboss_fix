@@ -20,11 +20,6 @@ export default defineConfig({
         }
       }
     }
-  },
-          stripe: 'Stripe'
-        }
-      }
-    }
-  },
+  }
 });
 
