@@ -11,7 +11,16 @@ const ForgotPasswordPage = () => (
     <div className="min-h-screen bg-brand-dark selection:bg-brand-primary selection:text-white">
       <Header />
       <main className="flex items-center justify-center px-4 py-12 min-h-[80vh]">
-        <section className="w-full max-w-md space-y-8 bg-brand-elevated p-8 sm:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden animate-fade-in" aria-labelledby="forgot-password-title">
+          <section
+            className="w-full max-w-md space-y-8 p-8 sm:p-12 rounded-[2.5rem] border relative overflow-hidden shadow-2xl"
+            style={{
+              background: 'var(--color-card)',
+              borderColor: 'var(--color-border)',
+              color: 'var(--color-text)',
+              boxShadow: '0 4px 32px 0 rgba(0,0,0,0.10)'
+            }}
+            aria-labelledby="forgot-password-title"
+          >
           <div className="absolute top-0 left-0 w-full h-1 bg-brand-primary" />
           <div className="text-center">
             <h2 id="forgot-password-title" className="text-3xl font-extrabold text-white">Recuperar Senha</h2>
