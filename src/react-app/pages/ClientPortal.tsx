@@ -133,8 +133,8 @@ const ClientPortal: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-dark text-white selection:bg-brand-primary selection:text-white">
       <Header />
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <main className="pt-28 pb-16 px-2 sm:px-4 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           <ClientPortalSidebar user={user} activeTab={activeTab} setActiveTab={setActiveTab} exporting={exporting} onExport={handleExportData} />
           <div className="flex-1 min-w-0 space-y-8">
             {activeTab === 'overview' && <ClientPortalOverview user={user} summary={summary} setActiveTab={setActiveTab} />}
@@ -142,51 +142,51 @@ const ClientPortal: React.FC = () => {
 
             {activeTab === 'processos' && (
               <div className="space-y-6 animate-fade-in">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-extrabold">Meus Processos</h2>
-                  <div className="bg-brand-primary/10 px-4 py-2 rounded-xl border border-brand-primary/20">
-                    <p className="text-brand-primary text-[10px] font-bold uppercase">Sincronizado com CNJ</p>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight">Meus Processos</h2>
+                  <div className="bg-brand-primary/10 px-3 py-1.5 rounded-xl border border-brand-primary/20">
+                    <p className="text-brand-primary text-[11px] sm:text-xs font-bold uppercase">Sincronizado com CNJ</p>
                   </div>
                 </div>
 
                 {loading ? (
-                  <div className="flex justify-center py-20"><Loader2 className="animate-spin text-brand-primary" size={40} /></div>
+                  <div className="flex justify-center py-16"><Loader2 className="animate-spin text-brand-primary" size={36} /></div>
                 ) : processos.length > 0 ? (
                   <div className="grid gap-4">
                     {processos.map((proc, idx) => (
-                      <div key={idx} className="bg-brand-elevated p-6 rounded-2xl border border-white/5 hover:border-brand-primary/30 transition-all group">
-                        <div className="flex flex-col md:flex-row justify-between gap-6">
+                      <div key={idx} className="bg-brand-elevated p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 hover:border-brand-primary/30 transition-all group">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-6">
                           <div className="space-y-2">
-                            <div className="flex items-center gap-3">
-                              <span className="bg-brand-primary/10 text-brand-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded-md">
+                            <div className="flex items-center gap-2 sm:gap-3">
+                              <span className="bg-brand-primary/10 text-brand-primary text-[11px] sm:text-xs font-bold uppercase px-2 py-0.5 rounded-md">
                                 {proc.area || 'Jurídico'}
                               </span>
-                              <p className="text-white/40 text-xs font-mono">{proc.numero_cnj}</p>
+                              <p className="text-white/40 text-[11px] sm:text-xs font-mono">{proc.numero_cnj}</p>
                             </div>
-                            <h3 className="text-xl font-bold group-hover:text-brand-primary transition-colors">{proc.titulo}</h3>
-                            <p className="text-sm text-white/50">{proc.tribunal} • {proc.orgao_julgador}</p>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold group-hover:text-brand-primary transition-colors">{proc.titulo}</h3>
+                            <p className="text-xs sm:text-sm text-white/50">{proc.tribunal} • {proc.orgao_julgador}</p>
                           </div>
-                          <div className="flex flex-col items-end justify-between gap-4">
+                          <div className="flex flex-col items-end justify-between gap-2 sm:gap-4">
                             <span className={clsx(
-                              "text-[10px] font-bold uppercase px-4 py-1.5 rounded-full shadow-lg",
+                              "text-[11px] sm:text-xs font-bold uppercase px-3 sm:px-4 py-1.5 rounded-full shadow-lg",
                               proc.status === 'Concluído' ? "bg-green-500/10 text-green-400" : "bg-brand-primary/10 text-brand-primary"
                             )}>
                               {proc.status}
                             </span>
-                            <p className="text-[10px] text-white/20 font-bold uppercase">Atualizado em: {new Date(proc.updated_at).toLocaleDateString('pt-BR')}</p>
+                            <p className="text-[10px] sm:text-xs text-white/20 font-bold uppercase">Atualizado em: {new Date(proc.updated_at).toLocaleDateString('pt-BR')}</p>
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-brand-elevated p-16 rounded-[2.5rem] border border-white/5 text-center space-y-6 shadow-2xl">
-                    <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto text-white/20">
-                      <Scale size={40} />
+                  <div className="bg-brand-elevated p-8 sm:p-16 rounded-2xl sm:rounded-[2.5rem] border border-white/5 text-center space-y-6 shadow-2xl">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto text-white/20">
+                      <Scale size={36} />
                     </div>
                     <div className="space-y-2">
-                      <p className="text-white font-bold text-xl">Nenhum processo encontrado</p>
-                      <p className="text-white/40 max-w-xs mx-auto">Se você já possui uma ação conosco, ela aparecerá aqui assim que for distribuída.</p>
+                      <p className="text-white font-bold text-lg sm:text-xl">Nenhum processo encontrado</p>
+                      <p className="text-white/40 max-w-xs mx-auto text-xs sm:text-base">Se você já possui uma ação conosco, ela aparecerá aqui assim que for distribuída.</p>
                     </div>
                   </div>
                 )}

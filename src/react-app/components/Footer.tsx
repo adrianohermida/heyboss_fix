@@ -6,33 +6,39 @@ export default function Footer() {
   const { mode } = useTheme();
   return (
     <footer
-      className="w-full py-10 border-t-0 shadow-[0_-2px_16px_0_#394a6610]"
+      className="w-full pt-12 pb-8 border-t-0 shadow-[0_-2px_16px_0_#394a6610]"
       style={{ background: 'var(--color-brand)', color: 'var(--color-white)' }}
       aria-label="Rodapé institucional"
     >
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-        <nav className="flex flex-wrap gap-6 justify-center md:justify-start mb-4 md:mb-0">
-          <a
-            href="/politica-privacidade"
-            className="text-xs md:text-sm font-medium hover:text-[var(--color-accent)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded transition-colors"
-            style={{ color: 'var(--color-white)', opacity: 0.85 }}
-            aria-label="Política de Privacidade"
-          >
-            Política de Privacidade
-          </a>
-          <a
-            href="/contato"
-            className="text-xs md:text-sm font-medium hover:text-[var(--color-accent)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded transition-colors"
-            style={{ color: 'var(--color-white)', opacity: 0.85 }}
-            aria-label="Contato"
-          >
-            Contato
-          </a>
-        </nav>
-        <p
-          className="text-xs md:text-sm font-semibold tracking-wide mt-2 md:mt-0"
-          style={{ color: 'var(--color-white)', opacity: 0.92 }}
-        >
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-start justify-between gap-8 text-center md:text-left">
+        {/* Navegação institucional */}
+        <div className="flex-1 flex flex-col gap-4 mb-6 md:mb-0">
+          <div className="flex flex-wrap gap-6 justify-center md:justify-start">
+            <a href="/" className="text-sm font-semibold hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.92 }}>Início</a>
+            <a href="/about2" className="text-sm font-semibold hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.92 }}>Sobre</a>
+            <a href="/blog" className="text-sm font-semibold hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.92 }}>Blog</a>
+            <a href="/contato" className="text-sm font-semibold hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.92 }}>Contato</a>
+            <a href="/politica-privacidade" className="text-sm font-semibold hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.92 }}>Política de Privacidade</a>
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-2">
+            {/* Social icons placeholders */}
+            <a href="#" aria-label="Instagram" className="hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.7 }}><svg width="20" height="20" fill="currentColor"><circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" fill="none" /><rect x="6" y="6" width="8" height="8" rx="2" /></svg></a>
+            <a href="#" aria-label="LinkedIn" className="hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.7 }}><svg width="20" height="20" fill="currentColor"><rect x="3" y="7" width="3" height="10" rx="1" /><rect x="8" y="10" width="3" height="7" rx="1" /><rect x="13" y="8" width="3" height="9" rx="1" /></svg></a>
+            <a href="#" aria-label="WhatsApp" className="hover:text-[var(--color-accent)] transition-colors" style={{ color: 'var(--color-white)', opacity: 0.7 }}><svg width="20" height="20" fill="currentColor"><circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" fill="none" /><path d="M7 9c1 2 3 3 5 2" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></a>
+          </div>
+        </div>
+        {/* Aviso legal */}
+        <div className="flex-1 flex flex-col gap-2 items-center md:items-end">
+          <p className="text-xs md:text-sm font-medium" style={{ color: 'var(--color-white)', opacity: 0.8 }}>
+            Hermida Maia Advocacia é um escritório de advocacia especializado em superendividamento e defesa do consumidor. Nenhuma informação deste site constitui aconselhamento jurídico.
+          </p>
+          <p className="text-xs md:text-sm font-medium" style={{ color: 'var(--color-white)', opacity: 0.7 }}>
+            O uso deste site implica aceitação dos <a href="/politica-privacidade" className="underline hover:text-[var(--color-accent)]">termos de uso</a>.
+          </p>
+        </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 mt-8 border-t border-white/10 pt-4 flex flex-col md:flex-row items-center justify-between gap-2">
+        <p className="text-xs md:text-sm font-semibold tracking-wide" style={{ color: 'var(--color-white)', opacity: 0.92 }}>
           © 2024 Hermida Maia Advocacia. Todos os direitos reservados.
         </p>
       </div>
