@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import RegisterForm from '../components/Register/RegisterForm';
 import RegisterSkeleton from '../components/Register/RegisterSkeleton';
@@ -29,7 +29,7 @@ const RegisterPage = () => {
           <RegisterForm />
         </div>
       </div>
-      <Footer />
+      {/* Footer removido: agora é global via App.tsx */}
       <ScrollToTopButton />
     </>
   );

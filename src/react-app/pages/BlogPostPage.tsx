@@ -25,6 +25,8 @@ import { CustomForm } from '../components/CustomForm';
 
 import ScrollToTopButton from '../components/ScrollToTopButton';
 
+// import Footer from '../components/Footer';
+
 const BlogPostPage = () => {
   const [formConfigs, setFormConfigs] = useState<any>(null);
   useEffect(() => {

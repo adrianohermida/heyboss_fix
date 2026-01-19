@@ -10,7 +10,7 @@
 
 
 import React, { useEffect } from 'react';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import { useNavigate, Link } from 'react-router-dom';
 

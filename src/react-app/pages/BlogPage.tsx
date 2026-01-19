@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import BlogHero from '../components/Blog/BlogHero';
 import BlogSearchFilter from '../components/Blog/BlogSearchFilter';
@@ -94,7 +94,7 @@ const BlogPage2: React.FC = () => {
           )}
         </div>
       </main>
-      <Footer />
+      {/* Footer removido: agora é global via App.tsx */}
       <ScrollToTopButton />
     </div>
   );

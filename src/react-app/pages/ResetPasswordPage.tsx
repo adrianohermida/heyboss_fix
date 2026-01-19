@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import ResetPasswordForm from '../components/ResetPassword/ResetPasswordForm';
 import ResetPasswordSkeleton from '../components/ResetPassword/ResetPasswordSkeleton';
@@ -32,7 +32,7 @@ const ResetPasswordPage = () => {
             <ResetPasswordForm />
           </div>
         </main>
-        <Footer />
+        {/* Footer removido: agora é global via App.tsx */}
       </div>
       <ScrollToTopButton />
     </>

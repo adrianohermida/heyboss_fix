@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import ForgotPasswordForm from '../components/ForgotPassword/ForgotPasswordForm';
 import { forgotPasswordPageManifest } from '../components/ForgotPassword/ForgotPasswordPage.manifest';
@@ -29,7 +29,7 @@ const ForgotPasswordPage = () => (
           <ForgotPasswordForm />
         </section>
       </main>
-      <Footer />
+      {/* Footer removido: agora é global via App.tsx */}
     </div>
     <ScrollToTopButton />
   </>

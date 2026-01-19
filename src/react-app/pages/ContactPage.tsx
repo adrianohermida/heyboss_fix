@@ -206,8 +206,7 @@ const ContactPage = () => {
           </div>
         </main>
 
-        {/* Footer Simples */}
-        {/* Footer is now rendered globally in App.tsx */}
+        {/* Footer removido: agora é global via App.tsx */}
       </div>
       <ScrollToTopButton />
     </>

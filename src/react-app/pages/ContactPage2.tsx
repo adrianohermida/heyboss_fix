@@ -8,7 +8,7 @@
 // - Mobile-first, acessível, tokenização CSS
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import ContactHero from '../components/Contact/ContactHero';
 import ContactCards from '../components/Contact/ContactCards';
@@ -70,7 +70,7 @@ const ContactPage2: React.FC = () => {
           />
         </div>
       </main>
-      <Footer />
+      {/* Footer removido: agora é global via App.tsx */}
       <ScrollToTopButton />
     </>
   );
