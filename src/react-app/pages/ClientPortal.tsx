@@ -139,8 +139,14 @@ const ClientPortal: React.FC = () => {
       });
   }, [access_token]);
 
+  const { mode } = useTheme ? useTheme() : { mode: 'dark' };
   return (
-    <div className="min-h-screen bg-brand-dark text-white selection:bg-brand-primary selection:text-white">
+    <div
+      className={clsx(
+        "min-h-screen selection:bg-brand-primary selection:text-white",
+        mode === 'clear' ? 'bg-white text-[var(--color-brand-dark)]' : 'bg-brand-dark text-white'
+      )}
+    >
       <Header />
       <main className="pt-28 pb-16 px-2 sm:px-4 lg:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
@@ -152,9 +158,9 @@ const ClientPortal: React.FC = () => {
             {activeTab === 'processos' && (
               <div className="space-y-6 animate-fade-in">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight">Meus Processos</h2>
+                  <h2 className={clsx("text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight", mode === 'clear' ? 'text-[var(--color-brand-dark)]' : 'text-white')}>Meus Processos</h2>
                   <div className="bg-brand-primary/10 px-3 py-1.5 rounded-xl border border-brand-primary/20">
-                    <p className="text-brand-primary text-[11px] sm:text-xs font-bold uppercase">Sincronizado com CNJ</p>
+                    <p className={clsx("text-[11px] sm:text-xs font-bold uppercase", mode === 'clear' ? 'text-[var(--color-accent)]' : 'text-brand-primary')}>Sincronizado com CNJ</p>
                   </div>
                 </div>
 
@@ -167,22 +173,22 @@ const ClientPortal: React.FC = () => {
                         <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-6">
                           <div className="space-y-2">
                             <div className="flex items-center gap-2 sm:gap-3">
-                              <span className="bg-brand-primary/10 text-brand-primary text-[11px] sm:text-xs font-bold uppercase px-2 py-0.5 rounded-md">
+                              <span className={clsx("bg-brand-primary/10 text-[11px] sm:text-xs font-bold uppercase px-2 py-0.5 rounded-md", mode === 'clear' ? 'text-[var(--color-accent)]' : 'text-brand-primary')}> 
                                 {proc.area || 'Jurídico'}
                               </span>
                               <p className="text-white/40 text-[11px] sm:text-xs font-mono">{proc.numero_cnj}</p>
                             </div>
-                            <h3 className="text-base sm:text-lg md:text-xl font-bold group-hover:text-brand-primary transition-colors">{proc.titulo}</h3>
-                            <p className="text-xs sm:text-sm text-white/50">{proc.tribunal} • {proc.orgao_julgador}</p>
+                            <h3 className={clsx("text-base sm:text-lg md:text-xl font-bold transition-colors", mode === 'clear' ? 'text-[var(--color-brand-dark)] group-hover:text-[var(--color-accent)]' : 'text-white group-hover:text-brand-primary')}>{proc.titulo}</h3>
+                            <p className={clsx("text-xs sm:text-sm", mode === 'clear' ? 'text-[var(--color-brand-dark)]/60' : 'text-white/50')}>{proc.tribunal} • {proc.orgao_julgador}</p>
                           </div>
                           <div className="flex flex-col items-end justify-between gap-2 sm:gap-4">
                             <span className={clsx(
                               "text-[11px] sm:text-xs font-bold uppercase px-3 sm:px-4 py-1.5 rounded-full shadow-lg",
-                              proc.status === 'Concluído' ? "bg-green-500/10 text-green-400" : "bg-brand-primary/10 text-brand-primary"
+                              proc.status === 'Concluído' ? (mode === 'clear' ? 'bg-green-100 text-green-700' : 'bg-green-500/10 text-green-400') : (mode === 'clear' ? 'bg-[var(--color-accent)]/10 text-[var(--color-accent)]' : 'bg-brand-primary/10 text-brand-primary')
                             )}>
                               {proc.status}
                             </span>
-                            <p className="text-[10px] sm:text-xs text-white/20 font-bold uppercase">Atualizado em: {new Date(proc.updated_at).toLocaleDateString('pt-BR')}</p>
+                            <p className={clsx("text-[10px] sm:text-xs font-bold uppercase", mode === 'clear' ? 'text-[var(--color-brand-dark)]/30' : 'text-white/20')}>Atualizado em: {new Date(proc.updated_at).toLocaleDateString('pt-BR')}</p>
                           </div>
                         </div>
                       </div>
@@ -543,6 +549,7 @@ const TicketsModule = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [reply, setReply] = useState("");
   const [sendingReply, setSendingReply] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const { access_token } = useAuth();
   const [formConfigs, setFormConfigs] = useState<any>(null);
   const [allConfigs, setAllConfigs] = useState<any>(null);
@@ -605,17 +612,29 @@ const TicketsModule = () => {
       if (res.ok) {
         setReply("");
         fetchMessages(selectedTicket.id);
+        setFeedback({ type: 'success', message: 'Sua resposta foi enviada! Você será notificado quando nossa equipe responder.' });
+      } else {
+        setFeedback({ type: 'error', message: 'Não foi possível enviar sua resposta. Tente novamente.' });
       }
     } catch (e) {
-      alert("Erro ao enviar resposta.");
+      setFeedback({ type: 'error', message: 'Erro ao enviar resposta. Verifique sua conexão.' });
     } finally {
       setSendingReply(false);
+      setTimeout(() => setFeedback(null), 4000);
     }
   };
 
   if (selectedTicket) {
     return (
       <div className="space-y-6 animate-fade-in">
+        {feedback && (
+          <div className={clsx(
+            'px-4 py-3 rounded-xl text-sm font-bold mb-2 text-center',
+            feedback.type === 'success' ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'
+          )}>
+            {feedback.message}
+          </div>
+        )}
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <button 
@@ -797,14 +816,23 @@ const TicketsModule = () => {
                 id="ticket_form"
                 schema={allConfigs['ticket_form'].jsonSchema as any}
                 onSubmit={async (data) => {
-                  const res = await fetch('/api/tickets', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                  });
-                  if (res.ok) {
-                    setIsCreating(false);
-                    fetchTickets();
+                  try {
+                    const res = await fetch('/api/tickets', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data)
+                    });
+                    if (res.ok) {
+                      setIsCreating(false);
+                      fetchTickets();
+                      setFeedback({ type: 'success', message: 'Ticket criado com sucesso. Você será notificado quando nossa equipe responder.' });
+                    } else {
+                      setFeedback({ type: 'error', message: 'Não foi possível criar o ticket. Tente novamente.' });
+                    }
+                  } catch {
+                    setFeedback({ type: 'error', message: 'Erro ao criar ticket. Verifique sua conexão.' });
+                  } finally {
+                    setTimeout(() => setFeedback(null), 4000);
                   }
                 }}
                 theme={contactFormTheme}
