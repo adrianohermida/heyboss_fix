@@ -23,8 +23,8 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import { UnifiedInbox } from './UnifiedInbox';
-import { ChannelConfig } from './ChannelConfig';
-import { QueueConfig } from './QueueConfig';
+import ChannelConfig from './ChannelConfig';
+import QueueConfig from './QueueConfig';
 import { clsx } from 'clsx';
 
 export const BalcaoVirtualModule: React.FC = () => {

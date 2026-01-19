@@ -219,3 +219,5 @@ function QueueConfig() {
     </div>
   );
 };
+
+export default QueueConfig;

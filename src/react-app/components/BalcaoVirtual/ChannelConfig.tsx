@@ -218,3 +218,5 @@ function ChannelConfig() {
     </div>
   );
 };
+
+export default ChannelConfig;
