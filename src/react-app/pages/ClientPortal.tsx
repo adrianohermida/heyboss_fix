@@ -1,4 +1,3 @@
-
 // Manifesto: ClientPortal
 // - Modular: ClientPortalSidebar, ClientPortalOverview
 // - Skeleton: loading states (em cada módulo)
@@ -11,17 +10,17 @@ import { useAuth } from '@hey-boss/users-service/react';
 import ClientPortalSidebar from '../components/ClientPortal/ClientPortalSidebar';
 import ClientPortalOverview from '../components/ClientPortal/ClientPortalOverview';
 import { Link } from 'react-router-dom';
-import { clsx } from '../utils';
+import clsx from 'clsx';
 import {
-  Loader2, Scale, CheckCircle2, Clock, CreditCard, Download, FileText, ExternalLink, AlertCircle, Wallet, CalendarIcon, MessageSquare, ShieldCheck, Plus, Send
+  Loader2, Scale, CheckCircle2, Clock, CreditCard, Download, FileText, ExternalLink, AlertCircle, Wallet, CalendarIcon, MessageSquare, ShieldCheck, Plus, Send, X, ChevronRight
 } from 'lucide-react';
 import { CustomForm } from '../components/CustomForm/CustomForm';
 import { contactFormTheme } from '../components/CustomForm/themes';
-import allConfigs from '../shared/form-configs.json';
+import allConfigs from '../../shared/form-configs.json';
 import { cn } from '../utils';
 
 const ClientPortal: React.FC = () => {
-  const { user: authUser } = useAuth();
+  const { user: authUser, access_token } = useAuth();
   const [user, setUser] = useState<any>(authUser);
   const [activeTab, setActiveTab] = useState('overview');
   const [summary, setSummary] = useState({ processos: 0, faturas: 0, tickets: 0, appointments: 0 });
@@ -38,18 +37,19 @@ const ClientPortal: React.FC = () => {
   // Função genérica para buscar dados de cada módulo
   const fetchData = async (modulo: string) => {
     setLoading(true);
+    const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
     try {
       if (modulo === 'processos') {
-        const res = await fetch('/api/processos/me');
+        const res = await fetch('/api/processos/me', { headers: { 'Content-Type': 'application/json', ...authHeaders } });
         setProcessos(res.ok ? await res.json() : []);
       } else if (modulo === 'financeiro') {
-        const res = await fetch('/api/faturas/me');
+        const res = await fetch('/api/faturas/me', { headers: { 'Content-Type': 'application/json', ...authHeaders } });
         setFaturas(res.ok ? await res.json() : []);
       } else if (modulo === 'plano') {
-        const res = await fetch('/api/planos/me');
+        const res = await fetch('/api/planos/me', { headers: { 'Content-Type': 'application/json', ...authHeaders } });
         setPlanos(res.ok ? await res.json() : []);
       } else if (modulo === 'documentos') {
-        const res = await fetch('/api/documentos/me');
+        const res = await fetch('/api/documentos/me', { headers: { 'Content-Type': 'application/json', ...authHeaders } });
         setDocumentos(res.ok ? await res.json() : []);
       }
     } catch {
@@ -66,12 +66,13 @@ const ClientPortal: React.FC = () => {
   useEffect(() => {
     if (activeTab === 'agenda') {
       setLoadingAppointments(true);
-      fetch('/api/my-appointments')
+      const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
+      fetch('/api/my-appointments', { headers: { 'Content-Type': 'application/json', ...authHeaders } })
         .then(res => res.ok ? res.json() : [])
         .then(setAppointments)
         .finally(() => setLoadingAppointments(false));
     }
-  }, [activeTab]);
+  }, [activeTab, access_token]);
 
   const handleExportData = async () => {
     setExporting(true);
@@ -93,10 +94,11 @@ const ClientPortal: React.FC = () => {
 
   useEffect(() => {
     // Busca dados do usuário autenticado
+    const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
     fetch('/api/users/me', {
       headers: {
         'Content-Type': 'application/json',
-        // Adicione Authorization se necessário
+        ...authHeaders
       }
     })
       .then(res => res.ok ? res.json() : null)
@@ -106,10 +108,10 @@ const ClientPortal: React.FC = () => {
     fetch('/api/users/summary', {
       headers: {
         'Content-Type': 'application/json',
-        // Adicione Authorization se necessário
+        ...authHeaders
       }
     }).then(res => res.ok && res.json().then(setSummary));
-  }, []);
+  }, [access_token]);
 
   return (
     <div className="min-h-screen bg-brand-dark text-white selection:bg-brand-primary selection:text-white">
@@ -226,7 +228,8 @@ const ClientPortal: React.FC = () => {
                                 btn.innerHTML = '<div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>';
                                 
                                 try {
-                                  const res = await fetch(`/api/admin/faturas/${fatura.id}/create-payment-link`, { method: 'POST' });
+                                  const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
+                                  const res = await fetch(`/api/admin/faturas/${fatura.id}/create-payment-link`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...authHeaders } });
                                   const data = await res.json();
                                   if (data.checkoutUrl) {
                                     const isInIframe = window.self !== window.top;
@@ -289,7 +292,7 @@ const ClientPortal: React.FC = () => {
                     </h3>
                     <CustomForm 
                       id="documentos_plano_form"
-                      schema={allConfigs['documentos_plano_form'].jsonSchema}
+                      schema={allConfigs['documentos_plano_form'].jsonSchema as any}
                       onSubmit={async (data) => {
                         const res = await fetch('/api/forms/submit', {
                           method: 'POST',
@@ -514,11 +517,13 @@ const TicketsModule = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [reply, setReply] = useState("");
   const [sendingReply, setSendingReply] = useState(false);
+  const { access_token } = useAuth();
 
   const fetchTickets = async () => {
     setLoading(true);
+    const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
     try {
-      const res = await fetch('/api/tickets');
+      const res = await fetch('/api/tickets', { headers: { 'Content-Type': 'application/json', ...authHeaders } });
       if (res.ok) setTickets(await res.json());
     } catch (e) {
       console.error(e);
@@ -528,8 +533,9 @@ const TicketsModule = () => {
   };
 
   const fetchMessages = async (id: number) => {
+    const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
     try {
-      const res = await fetch(`/api/tickets/${id}/messages`);
+      const res = await fetch(`/api/tickets/${id}/messages`, { headers: { 'Content-Type': 'application/json', ...authHeaders } });
       if (res.ok) setMessages(await res.json());
     } catch (e) {
       console.error(e);
@@ -551,10 +557,11 @@ const TicketsModule = () => {
   const handleSendReply = async () => {
     if (!reply.trim() || sendingReply) return;
     setSendingReply(true);
+    const authHeaders = access_token ? { 'Authorization': `Bearer ${access_token}` } : {};
     try {
       const res = await fetch(`/api/tickets/${selectedTicket.id}/reply`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...authHeaders },
         body: JSON.stringify({ message: reply })
       });
       if (res.ok) {
@@ -750,7 +757,7 @@ const TicketsModule = () => {
             <div className="flex-1 overflow-y-auto p-8">
               <CustomForm 
                 id="ticket_form"
-                schema={allConfigs['ticket_form'].jsonSchema}
+                schema={allConfigs['ticket_form'].jsonSchema as any}
                 onSubmit={async (data) => {
                   const res = await fetch('/api/tickets', {
                     method: 'POST',

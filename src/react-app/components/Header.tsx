@@ -11,9 +11,13 @@ import { useTheme } from '../../styles/ThemeProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, LogOut, Briefcase, ChevronDown, LayoutDashboard, Menu, X, Shield, Settings } from 'lucide-react';
 import { useAuth } from '@hey-boss/users-service/react';
+/**
+ * @description Componente de cabeçalho global para o site Hermida Maia Advocacia.
+ *             Gerencia a navegação principal e o estado de autenticação do usuário.
+ */
 
 // Componente de logo adaptável
-export function LogoHM({ size = 48, rounded = true, bg = 'var(--color-brand)' }: { size?: number, rounded?: boolean, bg?: string }) {
+const LogoHM = ({ size = 48, rounded = true, bg = 'var(--color-brand)' }: { size?: number, rounded?: boolean, bg?: string }) => {
   return (
     <header
       className={`w-full z-30 border-b border-white/5 bg-white/90 dark:bg-brand-dark/95 backdrop-blur-xl transition-colors duration-300 ${isMobileMenuOpen ? 'shadow-lg' : ''}`}
@@ -43,19 +47,44 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  // Verifica se o usuário é admin (membro da equipe) - Insensível a maiúsculas
-  const adminEmails = ["contato@hermidamaia.adv.br", "adrianohermida@gmail.com", "admin@example.com"];
+  const adminEmails = [
+    'contato@hermidamaia.adv.br',
+    'adrianohermida@gmail.com',
+    'admin@example.com',
+  ];
   const userEmail = (user?.email || "").toLowerCase();
   const isAdmin = user && (
     (user as any).isAdmin === true || 
     adminEmails.some(email => email.toLowerCase() === userEmail)
   );
 
-  const handleLogout = async () => {
-    await logout();
+  function handleLogout() {
+    logout();
     navigate('/login');
-  };
+  }
+
+  // Fecha o menu ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const { mode, setMode } = useTheme();
+  const headerBg = mode === 'clear' ? 'bg-white border-b border-gray-200' : 'bg-brand-dark border-b border-white/10';
+  const textMain = mode === 'clear' ? 'text-gray-900' : 'text-white';
+  const textSub = mode === 'clear' ? 'text-brand-primary' : 'text-brand-primary';
+
+  return (
+    // ...existing code...
+  );
+};
+
+export default Header;
 
   // Fecha o menu ao clicar fora
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { Hono } from "hono";
+import { Hono, Context } from "hono";
 import { getCookie, setCookie } from "hono/cookie";
 import {
   exchangeCodeForSessionToken,
@@ -13,19 +13,29 @@ import {
 import { CustomerService } from "../shared/customers-service";
 import { jwtVerify } from 'jose';
 
-const app = new Hono<{
-  Bindings: {
-    DB: D1Database;
-    API_KEY: string;
-    USER_ID: string;
-    PROJECT_ID: string;
-    USER_EMAIL: string;
-    AUTH_KEY: string;
-    ADMIN_EMAILS: string;
-    STRIPE_SECRET_KEY: string;
-    STRIPE_CONNECT_ACCOUNT_ID?: string;
-  };
-}>();
+type Env = {
+  DB: D1Database;
+  API_KEY: string;
+  USER_ID: string;
+  PROJECT_ID: string;
+  USER_EMAIL: string;
+  AUTH_KEY: string;
+  ADMIN_EMAILS: string;
+  STRIPE_SECRET_KEY: string;
+  STRIPE_CONNECT_ACCOUNT_ID?: string;
+  GOOGLE_CLIENT_ID?: string;
+  GOOGLE_CLIENT_SECRET?: string;
+  GOOGLE_CALENDAR_REDIRECT_URI?: string;
+};
+
+type User = {
+  email: string;
+  [key: string]: any;
+};
+
+type CustomContext = Context<{ Bindings: Env; Variables: { user?: User; cfAccessUser?: string } }>;
+
+const app = new Hono<{ Bindings: Env; Variables: { user?: User; cfAccessUser?: string } }>();
 
 // CORS middleware (allow all origins, credentials, and common headers)
 app.use('*', async (c, next) => {
@@ -34,8 +44,8 @@ app.use('*', async (c, next) => {
   c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
   c.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept,Origin,X-Requested-With');
   c.header('Access-Control-Allow-Credentials', 'true');
-  if (c.req.method === 'OPTIONS') {
-    return c.text('', 204);
+    if (c.req.method === 'OPTIONS') {
+      return new Response('', { status: 204 });
   }
   await next();
 });
@@ -47,16 +57,20 @@ const CF_ACCESS_AUD = '8fdfe84de533f3d875c5687ae5a40f9e6a5d292821b816df1334fb67b
 async function getCloudflareJWKs() {
   const res = await fetch(CF_ACCESS_JWKS_URL);
   if (!res.ok) throw new Error('Failed to fetch Cloudflare Access JWKs');
-  return await res.json();
+  const json = await res.json() as { keys?: any };
+  if (!json.keys) throw new Error('Malformed JWKs response');
+  return { keys: json.keys };
 }
 
-app.use('*', async (c, next) => {
+import { createRemoteJWKSet } from 'jose';
+import type { JWTVerifyOptions } from 'jose';
+app.use('*', async (c: CustomContext, next) => {
   const jwt = c.req.header('Cf-Access-Jwt-Assertion');
   if (!jwt) return c.text('Unauthorized', 401);
   try {
-    const jwks = await getCloudflareJWKs();
-    const { payload } = await jwtVerify(jwt, jwks, { audience: CF_ACCESS_AUD });
-    c.set('cfAccessUser', payload.sub);
+    const JWKS = createRemoteJWKSet(new URL(CF_ACCESS_JWKS_URL));
+    const { payload } = await jwtVerify(jwt, JWKS, { audience: CF_ACCESS_AUD } as JWTVerifyOptions);
+    c.set('cfAccessUser', payload.sub as string);
     await next();
   } catch (e) {
     return c.text('Unauthorized', 401);
@@ -118,7 +132,7 @@ const adminPermissionMiddleware = async (c: any, next: any) => {
 import { nanoid } from 'nanoid';
 
 // Google Calendar OAuth for admin integration
-app.get("/api/admin/google-calendar/connect", authMiddleware, adminPermissionMiddleware, async (c) => {
+app.get("/api/admin/google-calendar/connect", authMiddleware, adminPermissionMiddleware, async (c: CustomContext) => {
   const state = nanoid();
   await c.env.DB.prepare("INSERT INTO oauth_states (state, created_at) VALUES (?, ?)").bind(state, new Date().toISOString()).run();
   const redirectUrl = await getOAuthRedirectUrl("google", {
@@ -132,7 +146,7 @@ app.get("/api/admin/google-calendar/connect", authMiddleware, adminPermissionMid
     state,
     prompt: "consent",
     access_type: "offline",
-    redirect_uri: c.env.GOOGLE_CALENDAR_REDIRECT_URI
+    redirect_uri: c.env.GOOGLE_CALENDAR_REDIRECT_URI ?? ''
   });
   return c.redirect(redirectUrl, 302);
 });
@@ -149,19 +163,19 @@ app.get("/api/admin/google-calendar/callback", async (c) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       code,
-      client_id: c.env.GOOGLE_CLIENT_ID,
-      client_secret: c.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: c.env.GOOGLE_CALENDAR_REDIRECT_URI,
+      client_id: c.env.GOOGLE_CLIENT_ID ?? '',
+      client_secret: c.env.GOOGLE_CLIENT_SECRET ?? '',
+      redirect_uri: c.env.GOOGLE_CALENDAR_REDIRECT_URI ?? '',
       grant_type: "authorization_code"
     })
   });
-  const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) return c.text("Failed to get tokens", 400);
+  const tokenData: any = await tokenRes.json();
+  if (!tokenData || !tokenData.access_token) return c.text("Failed to get tokens", 400);
   const userInfoRes = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
     headers: { Authorization: `Bearer ${tokenData.access_token}` }
   });
-  const userInfo = await userInfoRes.json();
-  if (!userInfo.email) return c.text("Failed to get user email", 400);
+  const userInfo: any = await userInfoRes.json();
+  if (!userInfo || !userInfo.email) return c.text("Failed to get user email", 400);
   await c.env.DB.prepare(`INSERT OR REPLACE INTO google_calendar_tokens (user_email, access_token, refresh_token, expires_at, scope, token_type, id_token, created_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
     .bind(
@@ -179,11 +193,11 @@ app.get("/api/admin/google-calendar/callback", async (c) => {
 
 app.get("/api/admin/integrations/status", authMiddleware, adminPermissionMiddleware, async (c) => {
   const user = c.get("user");
-  let googleCalendar = { isConnected: false };
-  if (user && user.email) {
-    const row = await c.env.DB.prepare("SELECT * FROM google_calendar_tokens WHERE user_email = ?").bind(user.email).first();
+  let googleCalendar: { isConnected: boolean; email?: string } = { isConnected: false };
+  if (user && typeof user === 'object' && 'email' in user) {
+    const row = await c.env.DB.prepare("SELECT * FROM google_calendar_tokens WHERE user_email = ?").bind((user as User).email).first();
     if (row && row.access_token) {
-      googleCalendar = { isConnected: true, email: user.email };
+      googleCalendar = { isConnected: true, email: (user as User).email };
     }
   }
   // ...existing Stripe status logic...
@@ -227,20 +241,19 @@ app.post("/api/sessions", async (c) => {
   return c.json({ success: true }, 200);
 });
 
-app.get("/api/users/me", authMiddleware, async (c) => {
-  //@ts-ignore
+app.get("/api/users/me", authMiddleware, async (c: CustomContext) => {
   const user = c.get("user");
-  if (!user || !user.email) return c.json(user);
+  if (!user || typeof user !== 'object' || !('email' in user)) return c.json(user);
 
-  const userEmail = user.email.toLowerCase();
+  const userEmail = (user as User).email.toLowerCase();
   const adminEmails = (c.env.ADMIN_EMAILS || "").split(",").map((e: string) => e.trim().toLowerCase());
   const ownerEmail = (c.env.USER_EMAIL || "").toLowerCase();
-  
+
   const isExplicitAdmin = adminEmails.includes(userEmail) || 
                          (ownerEmail !== "" && ownerEmail !== "user_email" && userEmail === ownerEmail) ||
                          userEmail === "adrianohermida@gmail.com" ||
                          userEmail === "contato@hermidamaia.adv.br";
-  
+
   let isAdmin = isExplicitAdmin;
   if (!isAdmin) {
     try {
@@ -248,10 +261,10 @@ app.get("/api/users/me", authMiddleware, async (c) => {
       if (profile) isAdmin = true;
     } catch (e) {}
   }
-  
+
   await logAudit(c.env.DB, "user_profile", "view_me", userEmail);
-  
-  return c.json({ ...user, isAdmin });
+
+  return c.json({ ...(user as object), isAdmin });
 });
 
 app.get("/api/logout", async (c) => {
