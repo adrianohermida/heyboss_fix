@@ -130,34 +130,34 @@ const Calculator: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-8 animate-fade-in">
-              <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-                <div className={`p-3 rounded-full ${result.isSuperendividado ? 'bg-red-500/20 text-red-500' : 'bg-brand-primary/20 text-brand-primary'}`}>
+              <div className="flex items-center gap-4 p-6 bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)]/10">
+                <div className={`p-3 rounded-full ${result.isSuperendividado ? 'bg-red-500/20 text-red-500' : 'bg-[var(--color-brand-primary)]/20 text-[var(--color-brand-primary)]'}`}> 
                   {result.isSuperendividado ? <AlertCircle size={32} /> : <CheckCircle2 size={32} />}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-xl font-bold text-[var(--color-text)]">
                     {result.isSuperendividado ? 'Identificamos Superendividamento' : 'Situação sob Controle'}
                   </h3>
-                  <p className="text-white/60 text-sm">
-                    Suas dívidas comprometem <span className={`font-bold ${result.isSuperendividado ? 'text-red-500' : 'text-brand-primary'}`}>{result.percentage.toFixed(1)}%</span> da sua renda (limite saudável: 30%)
+                  <p className="text-[var(--color-text-secondary)] text-sm">
+                    Suas dívidas comprometem <span className={`font-bold ${result.isSuperendividado ? 'text-red-500' : 'text-[var(--color-brand-primary)]'}`}>{result.percentage.toFixed(1)}%</span> da sua renda (limite saudável: 30%)
                   </p>
                 </div>
               </div>
-              <div className="bg-brand-dark/50 p-6 rounded-2xl border border-white/5 space-y-3">
+              <div className="bg-[var(--color-cardElevated)] p-6 rounded-2xl border border-[var(--color-border)]/10 space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Total de Dívidas:</span>
-                  <span className="text-white font-bold">{formData.totalDebt}</span>
+                  <span className="text-[var(--color-text-secondary)]">Total de Dívidas:</span>
+                  <span className="text-[var(--color-text)] font-bold">{formData.totalDebt}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Parcelas Mensais:</span>
-                  <span className="text-white font-bold">{formData.monthlyInstallment}</span>
+                  <span className="text-[var(--color-text-secondary)]">Parcelas Mensais:</span>
+                  <span className="text-[var(--color-text)] font-bold">{formData.monthlyInstallment}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Renda Líquida:</span>
-                  <span className="text-white font-bold">{formData.monthlyIncome}</span>
+                  <span className="text-[var(--color-text-secondary)]">Renda Líquida:</span>
+                  <span className="text-[var(--color-text)] font-bold">{formData.monthlyIncome}</span>
                 </div>
               </div>
-              <div className="p-6 bg-brand-primary/10 rounded-2xl border border-brand-primary/30">
+              <div className="p-6 bg-[var(--color-brand-primary)]/10 rounded-2xl border border-[var(--color-brand-primary)]/30">
                 <div className="flex gap-3">
                   <div className="bg-brand-primary text-white p-1 rounded-md h-fit mt-1">
                     <CheckCircle2 size={14} />
@@ -175,7 +175,7 @@ const Calculator: React.FC = () => {
                   href="https://wa.me/5551996032004"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#00d969] text-[#3a4b67] hover:bg-[#00c75a] px-4 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all hover:scale-105 border border-[#00d969]"
+                  className="bg-[var(--color-accent)] text-[var(--color-brand-dark)] hover:bg-[var(--color-accent)]/90 px-4 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all hover:scale-105 border border-[var(--color-accent)]"
                 >
                   <MessageCircle size={18} />
                   Falar com Advogado
@@ -185,7 +185,7 @@ const Calculator: React.FC = () => {
                     setResult(null);
                     setFormData({ totalDebt: '', monthlyInstallment: '', monthlyIncome: '' });
                   }}
-                  className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-4 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all"
+                  className="bg-[var(--color-card)] hover:bg-[var(--color-cardElevated)] text-[var(--color-text)] border border-[var(--color-border)]/10 px-4 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all"
                 >
                   <Zap size={18} />
                   Nova Análise
