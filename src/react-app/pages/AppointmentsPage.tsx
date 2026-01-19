@@ -141,10 +141,16 @@ const AppointmentsPage: React.FC = () => {
       <main className="pt-0 pb-20 px-2">
         <AppointmentsHero />
         <AppointmentsBenefits />
-        <div className="max-w-4xl mx-auto bg-brand-elevated p-4 sm:p-8 rounded-3xl border border-white/10 shadow-2xl mt-8">
+        <div
+          className="max-w-4xl mx-auto p-4 sm:p-8 rounded-3xl border shadow-2xl mt-8"
+          style={{ background: 'var(--color-card)', borderColor: 'var(--color-border)', boxShadow: '0 4px 32px 0 var(--color-shadow)' }}
+        >
           <AppointmentsProgress step={step} />
           {!user && !authLoading ? (
-            <div className="bg-brand-dark/90 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-8 text-center border-2 border-brand-primary shadow-2xl animate-fade-in mb-6">
+            <div
+              className="backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-8 text-center border-2 animate-fade-in mb-6"
+              style={{ background: 'var(--color-bg-secondary)', borderColor: 'var(--color-accent)', boxShadow: '0 2px 12px 0 var(--color-shadow-accent)' }}
+            >
               <p className="text-white/70 mb-8 max-w-xs text-base">Para agendar, crie uma conta gratuita ou faça login. Seus dados estarão protegidos e o atendimento é sigiloso.</p>
               <Link to="/register" className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-brand-primary/20 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 mb-2 block text-center">Criar Conta Gratuita</Link>
               <Link to="/login" className="w-full bg-white/5 hover:bg-white/10 text-brand-primary border border-brand-primary px-8 py-4 rounded-xl font-bold text-lg transition-all focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 mb-2 block text-center">Já tenho conta – Entrar</Link>
