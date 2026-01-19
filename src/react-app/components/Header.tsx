@@ -60,46 +60,48 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 ${headerBg}`}
+      className="fixed top-0 w-full z-50 border-b shadow-md"
       style={{
         background: 'var(--color-brand)',
-        color: 'var(--color-text)',
-        boxShadow: mode === 'clear' ? '0 1px 0 0 var(--color-border)' : undefined
+        color: 'var(--color-white)',
+        boxShadow: '0 2px 12px 0 #394a6620',
+        borderBottom: '1.5px solid var(--color-border)'
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-4 group">
             <LogoHM size={48} rounded={true} bg={'var(--color-brand)'} />
             <div className="flex flex-col ml-2">
-              <span className="font-extrabold text-lg leading-tight" style={{ color: 'var(--color-text)' }}>
+              <span className="font-extrabold text-lg leading-tight" style={{ color: 'var(--color-white)', textShadow: '0 1px 4px #394a6640' }}>
                 Dr. Adriano Hermida Maia
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text)', opacity: 0.7 }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-white)', opacity: 0.7 }}>
                 Defesa do Superendividado
               </span>
             </div>
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="transition-colors text-sm font-medium" style={{ color: 'var(--color-text)' }}>Início</Link>
-            <Link to="/about2" className="transition-colors text-sm font-medium" style={{ color: 'var(--color-text)' }}>Sobre</Link>
-            <a href="/#serviços" className="transition-colors text-sm font-medium" style={{ color: 'var(--color-text)' }}>Serviços</a>
-            <Link to="/blog" className="transition-colors text-sm font-medium" style={{ color: 'var(--color-text)' }}>Blog</Link>
-            <Link to="/contact2" className="transition-colors text-sm font-medium" style={{ color: 'var(--color-text)' }}>Contato</Link>
+            <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Início</Link>
+            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Sobre</Link>
+            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Serviços</a>
+            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Blog</Link>
+            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Contato</Link>
             
             {user ? (
               <div className="relative" ref={menuRef}>
                 <button 
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   aria-label="Abrir menu do usuário"
-                  className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full pl-2 pr-4 py-1.5 transition-all focus-visible:ring-2 focus-visible:ring-brand-primary"
+                  className="flex items-center gap-3 bg-white/10 hover:bg-[var(--color-accent)] border border-white/10 rounded-full pl-2 pr-4 py-1.5 transition-all focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+                  style={{ color: 'var(--color-brand)' }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-xs">
+                  <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white font-bold text-xs">
                     {user.name?.[0] || user.email?.[0].toUpperCase()}
                   </div>
-                  <span className="text-sm font-medium hidden xl:inline" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.8 }}>{user.name || user.email.split('@')[0]}</span>
-                  <ChevronDown size={16} className={`transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} style={mode === 'clear' ? { color: '#394a66', opacity: 0.5 } : { color: '#fff', opacity: 0.4 }} />
+                  <span className="text-sm font-medium hidden xl:inline" style={{ color: 'var(--color-brand)' }}>{user.name || user.email.split('@')[0]}</span>
+                  <ChevronDown size={16} className={`transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--color-brand)', opacity: 0.5 }} />
                 </button>
 
                 {isMenuOpen && (
@@ -156,8 +158,8 @@ const Header = () => {
             ) : (
               <Link 
                 to="/login" 
-                className="px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-brand-primary"
-                style={mode === 'clear' ? { color: '#394a66', background: '#fff', border: '1px solid #394a66', boxShadow: '0 1px 4px #394a6610' } : { color: '#fff', background: '#181c2a', border: '1px solid #fff2', boxShadow: '0 1px 4px #0002' }}
+                className="px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] border border-white/20 bg-white hover:bg-[var(--color-accent)] hover:text-white shadow-md"
+                style={{ color: 'var(--color-brand)' }}
                 aria-label="Ir para login"
               >
                 <User size={16} />
