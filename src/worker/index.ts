@@ -27,6 +27,19 @@ const app = new Hono<{
   };
 }>();
 
+// CORS middleware (allow all origins, credentials, and common headers)
+app.use('*', async (c, next) => {
+  const origin = c.req.header('Origin') || '*';
+  c.header('Access-Control-Allow-Origin', origin);
+  c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+  c.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept,Origin,X-Requested-With');
+  c.header('Access-Control-Allow-Credentials', 'true');
+  if (c.req.method === 'OPTIONS') {
+    return c.text('', 204);
+  }
+  await next();
+});
+
 // Cloudflare Access JWT validation middleware
 const CF_ACCESS_JWKS_URL = 'https://aetherlab.cloudflareaccess.com/cdn-cgi/access/certs';
 const CF_ACCESS_AUD = '8fdfe84de533f3d875c5687ae5a40f9e6a5d292821b816df1334fb67b2a80e55';
