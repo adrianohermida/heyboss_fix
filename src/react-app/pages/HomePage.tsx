@@ -30,7 +30,6 @@ const HomePage: React.FC = () => {
           <Blog />
           <FinalCTA />
         </main>
-        <Footer />
       </div>
       <ScrollToTopButton />
     </>
