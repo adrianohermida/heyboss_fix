@@ -4,13 +4,9 @@ import { CheckCircle2, ChevronRight } from 'lucide-react';
 import { useTheme } from '../../../styles/ThemeProvider';
 
 const Services: React.FC = () => {
-  const { mode } = useTheme();
-  const bg = mode === 'clear' ? 'bg-brand-secondary' : 'bg-brand-dark';
-  const text = mode === 'clear' ? 'text-gray-900' : 'text-white';
-  const textSub = mode === 'clear' ? 'text-brand-dark/60' : 'text-white/60';
-  const cardBg = mode === 'clear' ? 'bg-[var(--color-cardElevated)] border border-gray-200 shadow-xl' : 'bg-[var(--color-card)] border border-white/10 shadow-xl';
+  useTheme();
   return (
-    <section id="servicos" className={`py-24 ${bg}`} aria-labelledby="servicos-title">
+    <section id="servicos" className="py-24 bg-[var(--color-bg-alt)]" aria-labelledby="servicos-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 id="servicos-title" className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-brand)] mb-4">Advocacia Especializada em Dívidas e Defesa do Consumidor</h2>
@@ -25,7 +21,7 @@ const Services: React.FC = () => {
             "Representação Junto ao BACEN e Órgãos de Defesa do Consumidor",
             "Defesa Contra Fraudes Bancárias e Golpes Pix"
           ].map((service, idx) => (
-            <div key={idx} className={`group ${cardBg} p-8 rounded-2xl hover:border-[var(--color-accent)] transition-all flex flex-col justify-between`}>
+            <div key={idx} className="group bg-[var(--color-cardElevated)] border border-[var(--color-border)]/10 shadow-xl p-8 rounded-2xl hover:border-[var(--color-accent)] transition-all flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="bg-[var(--color-accent)]/10 w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-[var(--color-accent)] transition-colors">
                   <CheckCircle2 className="text-[var(--color-accent)] group-hover:text-white" size={24} />

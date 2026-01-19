@@ -10,7 +10,7 @@ const Stats: React.FC = () => {
     <section className={`py-20 ${bg}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-3xl sm:text-4xl font-extrabold ${text} mb-4`}>Resultados Reais na Redução e Renegociação de Dívidas</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-brand)] mb-4">Resultados Reais na Redução e Renegociação de Dívidas</h2>
           <p className={`${mode === 'clear' ? 'text-brand-dark/60' : 'text-white/60'} max-w-2xl mx-auto`}>Nossa advocacia especializada em dívidas foca em resultados reais para quem busca o fim das cobranças abusivas e a solução rápida para dívidas.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
