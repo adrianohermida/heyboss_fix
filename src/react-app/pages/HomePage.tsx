@@ -17,7 +17,13 @@ import FinalCTA from '../components/Home/FinalCTA';
 const HomePage: React.FC = () => {
   return (
     <>
-      <div className="min-h-screen bg-brand-dark selection:bg-brand-primary selection:text-white">
+      <div
+        className="min-h-screen"
+        style={{
+          background: 'var(--color-bg)',
+          color: 'var(--color-text)'
+        }}
+      >
         <Header />
         <main>
           <Hero />
