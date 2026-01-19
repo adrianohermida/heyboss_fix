@@ -19,12 +19,27 @@ const useLogin = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const { supabase } = await import('../../../supabaseClient');
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      setError(error.message);
-    } else {
-      navigate('/dashboard', { replace: true });
+    try {
+      const { supabase } = await import('../../../supabaseClient');
+      if (!supabase) {
+        setError('Erro de configuração: Supabase não inicializado. Verifique suas variáveis de ambiente.');
+        setLoading(false);
+        return;
+      }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        setError(error.message);
+      } else {
+        navigate('/dashboard', { replace: true });
+      }
+    } catch (err: any) {
+      if (err?.status === 404) {
+        setError('Serviço de autenticação indisponível. Tente novamente mais tarde.');
+      } else if (err instanceof SyntaxError) {
+        setError('Resposta inesperada do servidor.');
+      } else {
+        setError('Erro inesperado ao tentar fazer login. Verifique sua conexão ou contate o suporte.');
+      }
     }
     setLoading(false);
   };
