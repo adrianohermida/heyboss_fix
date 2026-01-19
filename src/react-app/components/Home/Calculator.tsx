@@ -4,7 +4,7 @@ import { useTheme } from '../../../styles/ThemeProvider';
 
 const Calculator: React.FC = () => {
   const { mode } = useTheme();
-  const bg = mode === 'clear' ? 'bg-white' : 'bg-brand-dark';
+  const bg = mode === 'clear' ? 'bg-[var(--color-cardElevated)]' : 'bg-[var(--color-brand)]';
   const [formData, setFormData] = React.useState({
     totalDebt: '',
     monthlyInstallment: '',
@@ -71,10 +71,10 @@ const Calculator: React.FC = () => {
     <section id="calculadora" className={`py-24 ${bg} relative overflow-hidden`}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="max-w-4xl mx-auto px-4 relative z-10">
-        <div className={`rounded-[2.5rem] p-8 sm:p-12 shadow ${mode === 'clear' ? 'bg-white border border-gray-200' : 'bg-brand-elevated border border-white/10'}`}>
+        <div className={`rounded-[2.5rem] p-8 sm:p-12 shadow-2xl ${mode === 'clear' ? 'bg-[var(--color-cardElevated)] border border-gray-200' : 'bg-[var(--color-card)] border border-white/10'}`}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Calculadora de Superendividamento: Veja como Eliminar Dívidas</h2>
-            <p className="text-white/60">Descubra em minutos se você tem direito à Lei 14.181/2021 para renegociar dívidas até 70% e sair do sufoco financeiro.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-brand)] mb-4">Calculadora de Superendividamento: Veja como Eliminar Dívidas</h2>
+            <p className="text-lg text-[var(--color-text)]/80">Descubra em minutos se você tem direito à Lei 14.181/2021 para renegociar dívidas até 70% e sair do sufoco financeiro.</p>
           </div>
           {!result ? (
             <div className="space-y-8">
@@ -90,41 +90,41 @@ const Calculator: React.FC = () => {
               </div>
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-white/70 ml-1">Valor total das dívidas <span className="text-white/30 font-normal">(Ex: R$ 15.000)</span></label>
+                  <label className="text-sm font-semibold text-[var(--color-text)] ml-1">Valor total das dívidas <span className="text-[var(--color-text)]/40 font-normal">(Ex: R$ 15.000)</span></label>
                   <input 
                     type="text" 
                     value={formData.totalDebt}
                     onChange={(e) => handleInputChange(e, 'totalDebt')}
                     placeholder="R$ 0,00" 
-                    className="w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all" 
+                    className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-5 py-4 text-[var(--color-text)] focus:border-[var(--color-accent)] outline-none transition-all placeholder:text-[var(--color-text)]/40" 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-white/70 ml-1">Parcelas mensais <span className="text-white/30 font-normal">(Ex: R$ 2.500)</span></label>
+                  <label className="text-sm font-semibold text-[var(--color-text)] ml-1">Parcelas mensais <span className="text-[var(--color-text)]/40 font-normal">(Ex: R$ 2.500)</span></label>
                   <input 
                     type="text" 
                     value={formData.monthlyInstallment}
                     onChange={(e) => handleInputChange(e, 'monthlyInstallment')}
                     placeholder="R$ 0,00" 
-                    className="w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all" 
+                    className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-5 py-4 text-[var(--color-text)] focus:border-[var(--color-accent)] outline-none transition-all placeholder:text-[var(--color-text)]/40" 
                   />
-                  <p className="text-[10px] text-white/40 ml-1">Soma de cartões, empréstimos e parcelamentos (exceto garantia de bens, impostos, pensão)</p>
+                  <p className="text-[10px] text-[var(--color-text)]/40 ml-1">Soma de cartões, empréstimos e parcelamentos (exceto garantia de bens, impostos, pensão)</p>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-white/70 ml-1">Renda líquida familiar <span className="text-white/30 font-normal">(Ex: R$ 5.000)</span></label>
+                  <label className="text-sm font-semibold text-[var(--color-text)] ml-1">Renda líquida familiar <span className="text-[var(--color-text)]/40 font-normal">(Ex: R$ 5.000)</span></label>
                   <input 
                     type="text" 
                     value={formData.monthlyIncome}
                     onChange={(e) => handleInputChange(e, 'monthlyIncome')}
                     placeholder="R$ 0,00" 
-                    className="w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all" 
+                    className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-5 py-4 text-[var(--color-text)] focus:border-[var(--color-accent)] outline-none transition-all placeholder:text-[var(--color-text)]/40" 
                   />
-                  <p className="text-[10px] text-white/40 ml-1">Salário bruto menos impostos</p>
+                  <p className="text-[10px] text-[var(--color-text)]/40 ml-1">Salário bruto menos impostos</p>
                 </div>
               </div>
               <button 
                 onClick={calculate}
-                className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white py-5 rounded-2xl font-extrabold text-xl shadow-lg shadow-brand-primary/20 transition-all hover:scale-[1.02] active:scale-95"
+                className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/90 text-[var(--color-brand)] py-5 rounded-2xl font-extrabold text-xl shadow-lg shadow-[var(--color-accent)]/20 transition-all hover:scale-[1.02] active:scale-95 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
               >
                 Calcular Minha Situação
               </button>
@@ -194,7 +194,7 @@ const Calculator: React.FC = () => {
               </div>
             </div>
           )}
-          <p className="text-center text-[10px] text-white/20 mt-8">
+          <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
             * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
           </p>
         </div>
