@@ -3,22 +3,26 @@
 
 export const colors = {
   clear: {
-    bg: '#f8f9fa',
-    brand: '#394a66', // branding azul escuro
-    accent: '#0d9c6e',
-    text: '#394a66', // texto principal branding
-    card: '#fff',
+    bg: '#f7f9fa', // fundo geral
+    brand: '#394a66', // cor matriz branding
+    accent: '#00d969', // destaque vibrante
+    text: '#394a66', // texto principal
+    card: '#f7f9fa', // cards e superfícies
+    cardElevated: '#edf0f2', // cards elevados ou destaque
     border: '#e5e7eb',
     footerBg: '#394a66',
+    white: '#edf0f2', // substituto do branco
   },
   dark: {
-    bg: '#0a0e1a',
-    brand: '#0d9c6e',
-    accent: '#f59e0b',
-    text: '#fff',
-    card: '#181c2a',
+    bg: '#181c2a', // fundo escuro elegante
+    brand: '#394a66', // mantém matriz para consistência
+    accent: '#00d969', // destaque vibrante
+    text: '#edf0f2', // texto claro
+    card: '#22242c', // cards escuros
+    cardElevated: '#394a66', // cards elevados escuros
     border: '#22242c',
     footerBg: '#181c2a',
+    white: '#edf0f2', // mantém consistência para elementos claros
   }
 };
 
