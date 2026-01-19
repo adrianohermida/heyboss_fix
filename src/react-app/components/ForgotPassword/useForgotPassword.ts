@@ -12,12 +12,21 @@ const useForgotPassword = () => {
     setLoading(true);
     setError('');
     setSuccess('');
-    const { supabase } = await import('../../../supabaseClient');
-    const { error } = await supabase.auth.resetPasswordForEmail(email);
-    if (error) {
-      setError(error.message);
-    } else {
-      setSuccess('Se o e-mail estiver cadastrado, você receberá instruções para redefinir sua senha.');
+    try {
+      const { supabase } = await import('../../../supabaseClient');
+      if (!supabase) {
+        setError('Erro de configuração: Supabase não inicializado. Verifique suas variáveis de ambiente.');
+        setLoading(false);
+        return;
+      }
+      const { error } = await supabase.auth.resetPasswordForEmail(email);
+      if (error) {
+        setError(error.message);
+      } else {
+        setSuccess('Se o e-mail estiver cadastrado, você receberá instruções para redefinir sua senha.');
+      }
+    } catch (err: any) {
+      setError('Erro inesperado ao tentar recuperar senha. Tente novamente ou contate o suporte.');
     }
     setLoading(false);
   };
