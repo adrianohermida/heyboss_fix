@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-brand-dark)] pt-20 pb-10 border-t border-white/5">
+    <footer className="bg-[var(--color-brand)] pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Branding e institucional */}
@@ -36,22 +36,22 @@ export default function Footer() {
           {/* Serviços */}
           <div>
             <h4 className="text-white font-bold mb-6">Serviços</h4>
-            <ul className="space-y-4 text-sm text-white/50">
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Defesa do Superendividado</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Revisão de Contratos Bancários</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Renegociação de Dívidas</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Fraudes e Golpes Bancários</a></li>
+            <ul className="space-y-4 text-sm text-white">
+              <li><a href="#" className="hover:text-[var(--color-success)] transition-colors">Defesa do Superendividado</a></li>
+              <li><a href="#" className="hover:text-[var(--color-success)] transition-colors">Revisão de Contratos Bancários</a></li>
+              <li><a href="#" className="hover:text-[var(--color-success)] transition-colors">Renegociação de Dívidas</a></li>
+              <li><a href="#" className="hover:text-[var(--color-success)] transition-colors">Fraudes e Golpes Bancários</a></li>
             </ul>
           </div>
 
           {/* Links úteis */}
           <div>
             <h4 className="text-white font-bold mb-6">Links Úteis</h4>
-            <ul className="space-y-4 text-sm text-white/50">
-              <li><Link to="/sobre" className="hover:text-brand-primary transition-colors">Sobre o Escritório</Link></li>
-              <li><a href="#calculadora" className="hover:text-brand-primary transition-colors">Calculadora Gratuita</a></li>
-              <li><Link to="/blog" className="hover:text-brand-primary transition-colors">Blog e Notícias</Link></li>
-              <li><Link to="/contato" className="hover:text-brand-primary transition-colors">Agendar Consulta</Link></li>
+            <ul className="space-y-4 text-sm text-white">
+              <li><Link to="/sobre" className="hover:text-[var(--color-success)] transition-colors">Sobre o Escritório</Link></li>
+              <li><a href="#calculadora" className="hover:text-[var(--color-success)] transition-colors">Calculadora Gratuita</a></li>
+              <li><Link to="/blog" className="hover:text-[var(--color-success)] transition-colors">Blog e Notícias</Link></li>
+              <li><Link to="/contato" className="hover:text-[var(--color-success)] transition-colors">Agendar Consulta</Link></li>
             </ul>
           </div>
 
@@ -59,11 +59,11 @@ export default function Footer() {
           <div className="space-y-6">
             <h4 className="text-white font-bold mb-6">Contato</h4>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 text-sm text-white/50">
+              <div className="flex items-start gap-3 text-sm text-white">
                 <span className="inline-block w-5 h-5 text-brand-primary">📞</span>
                 <span>(51) 99603-2004</span>
               </div>
-              <div className="flex items-start gap-3 text-sm text-white/50">
+              <div className="flex items-start gap-3 text-sm text-white">
                 <span className="inline-block w-5 h-5 text-brand-primary">✉️</span>
                 <span>contato@hermidamaia.adv.br</span>
               </div>

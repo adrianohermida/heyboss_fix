@@ -61,12 +61,20 @@ const Header = () => {
   return (
     <header
       className="fixed top-0 w-full z-50 border-b shadow-md"
-      style={{
-        background: 'var(--color-brand)',
-        color: 'var(--color-white)',
-        boxShadow: '0 2px 12px 0 #394a6620',
-        borderBottom: '1.5px solid var(--color-border)'
-      }}
+      style={mode === 'clear'
+        ? {
+            background: '#fff',
+            color: '#394a66',
+            boxShadow: '0 2px 12px 0 #394a6610',
+            borderBottom: '1.5px solid #e5eaf2'
+          }
+        : {
+            background: 'var(--color-brand)',
+            color: 'var(--color-white)',
+            boxShadow: '0 2px 12px 0 #394a6620',
+            borderBottom: '1.5px solid var(--color-border)'
+          }
+      }
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">

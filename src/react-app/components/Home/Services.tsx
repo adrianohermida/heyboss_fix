@@ -21,14 +21,14 @@ const Services: React.FC = () => {
             "Representação Junto ao BACEN e Órgãos de Defesa do Consumidor",
             "Defesa Contra Fraudes Bancárias e Golpes Pix"
           ].map((service, idx) => (
-            <div key={idx} className="group flex flex-col justify-between p-8 rounded-2xl shadow-xl transition-all" style={{ background: 'var(--color-cardElevated)', border: '1px solid var(--color-border)' }}>
+            <div key={idx} className="group flex flex-col justify-between p-8 rounded-2xl shadow-xl transition-all bg-[var(--color-card)] border border-[var(--color-border)]">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'var(--color-success)', opacity: 0.12 }}>
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[var(--color-success)]/10">
                   <CheckCircle2 style={{ color: 'var(--color-success)' }} size={24} />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold" style={{ color: 'var(--color-brand)' }}>{service}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-[var(--color-brand)]">{service}</h3>
               </div>
-              <button className="mt-8 font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform focus-visible:ring-2" style={{ color: 'var(--color-success)' }}>
+              <button className="mt-8 font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform focus-visible:ring-2 text-[var(--color-success)]">
                 Saiba mais <ChevronRight size={16} />
               </button>
             </div>
