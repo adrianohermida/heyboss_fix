@@ -79,23 +79,23 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-4 group">
-            <LogoHM size={48} rounded={true} bg={'var(--color-brand)'} />
+            <LogoHM size={48} rounded={true} bg={mode === 'clear' ? '#394a66' : 'var(--color-brand)'} />
             <div className="flex flex-col ml-2">
-              <span className="font-extrabold text-lg leading-tight" style={{ color: 'var(--color-white)', textShadow: '0 1px 4px #394a6640' }}>
+              <span className="font-extrabold text-lg leading-tight" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', textShadow: mode === 'clear' ? 'none' : '0 1px 4px #394a6640' }}>
                 Dr. Adriano Hermida Maia
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-white)', opacity: 0.7 }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', opacity: 1 }}>
                 Defesa do Superendividado
               </span>
             </div>
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Início</Link>
-            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Sobre</Link>
-            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Serviços</a>
-            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Blog</Link>
-            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: 'var(--color-white)' }}>Contato</Link>
+            <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Início</Link>
+            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Sobre</Link>
+            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Serviços</a>
+            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Blog</Link>
+            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Contato</Link>
             
             {user ? (
               <div className="relative" ref={menuRef}>
