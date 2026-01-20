@@ -5,20 +5,20 @@ import { useTheme } from '../../../styles/ThemeProvider';
 
 const Hero: React.FC = () => {
   const { mode } = useTheme();
-  const bg = 'bg-[var(--color-bg)]';
-  const text = 'text-[var(--color-text)]';
+  const bg = mode === 'clear' ? 'bg-[var(--color-bg)]' : 'bg-[var(--color-bg)]';
+  const text = mode === 'clear' ? 'text-[var(--color-text)]' : 'text-[var(--color-text)]';
   return (
     <section className={`relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden ${bg}`}>
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,var(--color-brand-primary)/10_0%,transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className={`text-center lg:text-left space-y-8`}>
-            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-brand-accent)]/10 border border-[var(--color-brand-accent)]/20`}> 
-              <span className="w-2 h-2 bg-brand-accent rounded-full animate-pulse" />
-              <span className="text-brand-accent text-xs font-bold uppercase tracking-widest">Lei 14.181/2021 - Superendividamento</span>
+            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full`} style={{ background: 'var(--color-accent)', opacity: 0.12, border: '1px solid var(--color-accent)' }}>
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent)' }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--color-accent)' }}>Lei 14.181/2021 - Superendividamento</span>
             </div>
             <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold ${text} leading-[1.1] sm:!text-[53px]`}>
-              Advogado Especialista em Superendividamento: Parcele suas <span className="text-brand-primary">dívidas</span> em até 5 anos
+              Advogado Especialista em Superendividamento: Parcele suas <span style={{ color: 'var(--color-accent)' }}>dívidas</span> em até 5 anos
             </h1>
             <p className={`text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto lg:mx-0 leading-relaxed`}>
               Advocacia especializada em superendividamento e defesa do consumidor. Mais de R$ 35 milhões em redução de dívidas renegociados em todo o Brasil. Recupere sua paz financeira hoje.
@@ -26,12 +26,13 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <button 
                 onClick={() => document.getElementById('calculadora')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full sm:w-auto font-bold text-lg flex items-center justify-center gap-3 transition-all rounded-xl px-8 py-4 group bg-[var(--color-brand-primary)] text-[var(--color-brand-dark)] hover:bg-[var(--color-brand-primary)]/90 shadow-xl border border-[var(--color-brand-primary)]"
+                className="w-full sm:w-auto font-bold text-lg flex items-center justify-center gap-3 transition-all rounded-xl px-8 py-4 group"
+                style={{ background: 'var(--color-accent)', color: 'var(--color-on-accent, #fff)', border: '1px solid var(--color-accent)', boxShadow: '0 2px 12px 0 var(--color-shadow-accent)' }}
               >
                 Calcular Gratuitamente
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <Link to="/appointments" className="w-full sm:w-auto font-bold text-lg transition-all items-center justify-center rounded-xl px-8 py-4 bg-[var(--color-bg-alt)] border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/10 shadow">
+              <Link to="/appointments" className="w-full sm:w-auto font-bold text-lg transition-all items-center justify-center rounded-xl px-8 py-4" style={{ background: 'var(--color-cardElevated)', color: 'var(--color-brand)', border: '1px solid var(--color-brand)', boxShadow: '0 2px 12px 0 var(--color-shadow)' }}>
                 Agendar Consulta
               </Link>
             </div>
@@ -43,7 +44,7 @@ const Hero: React.FC = () => {
                 <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia4.jpg" className="w-10 h-10 rounded-full border-2 border-[var(--color-brand-primary)] object-cover" alt="Família Satisfeita 4" />
               </div>
               <div className="text-sm">
-                <div className="flex text-[var(--color-brand-accent)]">
+                <div className="flex" style={{ color: 'var(--color-accent)' }}>
                   {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
                 </div>
                 <p className="text-[var(--color-text-secondary)] font-medium">+2.500 famílias satisfeitas</p>

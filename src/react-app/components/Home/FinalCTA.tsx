@@ -8,8 +8,8 @@ const FinalCTA: React.FC = () => {
   const { mode } = useTheme();
   // Fundo premium 100% tokenizado
   const bg = mode === 'clear'
-    ? 'bg-[linear-gradient(135deg,var(--color-bg),var(--color-brand-primary)_60%,var(--color-brand-accent)_100%)]'
-    : 'bg-[linear-gradient(135deg,var(--color-brand-dark),var(--color-brand-primary)_60%,var(--color-brand-accent)_100%)]';
+    ? 'bg-[linear-gradient(135deg,var(--color-bg),var(--color-success)_60%,var(--color-accent)_100%)]'
+    : 'bg-[linear-gradient(135deg,var(--color-bg),var(--color-success)_60%,var(--color-accent)_100%)]';
   const shadow = 'shadow-[0_8px_32px_0_var(--color-shadow)]';
   return (
     <section
@@ -35,14 +35,16 @@ const FinalCTA: React.FC = () => {
             href="https://wa.me/5551996032004"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand-primary text-white px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl shadow-brand-primary/30 transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-brand-primary/40 focus:ring-offset-2 text-center"
+            className="px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2 text-center"
+            style={{ background: 'var(--color-success)', color: 'var(--color-on-success, #fff)', boxShadow: '0 2px 12px 0 var(--color-shadow-success)' }}
             aria-label="Falar no WhatsApp"
           >
             Falar no WhatsApp
           </a>
           <Link
             to="/appointments"
-            className="bg-white text-brand-primary px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl shadow-brand-primary/20 transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-brand-primary/30 focus:ring-offset-2 text-center"
+            className="px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2 text-center"
+            style={{ background: 'var(--color-cardElevated)', color: 'var(--color-brand)', boxShadow: '0 2px 12px 0 var(--color-shadow)' }}
             aria-label="Agendar avaliação"
           >
             Agendar avaliação

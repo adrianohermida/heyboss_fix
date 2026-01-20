@@ -123,7 +123,8 @@ const Calculator: React.FC = () => {
               </div>
               <button 
                 onClick={calculate}
-                className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/90 text-[var(--color-brand)] py-5 rounded-2xl font-extrabold text-xl shadow-lg shadow-[var(--color-accent)]/20 transition-all hover:scale-[1.02] active:scale-95 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+                className="w-full py-5 rounded-2xl font-extrabold text-xl shadow-lg transition-all hover:scale-[1.02] active:scale-95 focus-visible:ring-2"
+                style={{ background: 'var(--color-accent)', color: 'var(--color-on-accent, #fff)', boxShadow: '0 2px 12px 0 var(--color-shadow-accent)' }}
               >
                 Calcular Minha Situação
               </button>
@@ -131,7 +132,7 @@ const Calculator: React.FC = () => {
           ) : (
             <div className="space-y-8 animate-fade-in">
               <div className="flex items-center gap-4 p-6 bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)]/10">
-                <div className={`p-3 rounded-full ${result.isSuperendividado ? 'bg-red-500/20 text-red-500' : 'bg-[var(--color-brand-primary)]/20 text-[var(--color-brand-primary)]'}`}> 
+                <div className="p-3 rounded-full" style={result.isSuperendividado ? { background: 'var(--color-error)', color: 'var(--color-on-error, #fff)' } : { background: 'var(--color-success)', color: 'var(--color-on-success, #fff)' }}>
                   {result.isSuperendividado ? <AlertCircle size={32} /> : <CheckCircle2 size={32} />}
                 </div>
                 <div>
@@ -139,7 +140,7 @@ const Calculator: React.FC = () => {
                     {result.isSuperendividado ? 'Identificamos Superendividamento' : 'Situação sob Controle'}
                   </h3>
                   <p className="text-[var(--color-text-secondary)] text-sm">
-                    Suas dívidas comprometem <span className={`font-bold ${result.isSuperendividado ? 'text-red-500' : 'text-[var(--color-brand-primary)]'}`}>{result.percentage.toFixed(1)}%</span> da sua renda (limite saudável: 30%)
+                    Suas dívidas comprometem <span className="font-bold" style={result.isSuperendividado ? { color: 'var(--color-error)' } : { color: 'var(--color-success)' }}>{result.percentage.toFixed(1)}%</span> da sua renda (limite saudável: 30%)
                   </p>
                 </div>
               </div>
