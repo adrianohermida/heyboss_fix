@@ -165,7 +165,7 @@ const Calculator: React.FC = () => {
                     <div className="rounded-[2.5rem] p-8 sm:p-12 shadow-2xl bg-[var(--color-cardElevated)] border border-[var(--color-border)]/10">
                       <div className="space-y-10 animate-fade-in">
                         {result && (
-                          <>
+                          <React.Fragment>
                             {/* Card de resultado */}
                             <div className="flex flex-col sm:flex-row items-center gap-6 p-8 bg-white rounded-3xl shadow-2xl border border-[var(--color-border)]/10">
                               <div className={`flex items-center justify-center rounded-full shadow-lg ${result.isSuperendividado ? 'bg-[var(--color-error)]' : 'bg-[var(--color-success)]'} w-20 h-20`}>
@@ -234,11 +234,11 @@ const Calculator: React.FC = () => {
                                 Nova Análise
                               </button>
                             </div>
-                          </>
+                          </React.Fragment>
                         )}
-                      <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
-                        * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
-                      </p>
+                        <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
+                          * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
+                        </p>
                     </div>
                   </div>
                 </div>
