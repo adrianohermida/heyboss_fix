@@ -5,11 +5,11 @@ import { useTheme } from '../../../styles/ThemeProvider';
 
 const Hero: React.FC = () => {
   const { mode } = useTheme();
-  const bg = mode === 'clear' ? 'bg-[var(--color-bg)]' : 'bg-[var(--color-bg)]';
-  const text = mode === 'clear' ? 'text-[var(--color-text)]' : 'text-[var(--color-text)]';
+  const bg = mode === 'clear' ? 'bg-white' : 'bg-[var(--color-bg)]';
+  const text = mode === 'clear' ? 'text-[#394a66]' : 'text-[var(--color-text)]';
   return (
     <section className={`relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden ${bg}`}>
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,var(--color-brand-primary)/10_0%,transparent_50%)]" />
+      {/* Removido overlay degradê */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className={`text-center lg:text-left space-y-8`}>
@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
               <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent)' }} />
               <span className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--color-accent)' }}>Lei 14.181/2021 - Superendividamento</span>
             </div>
-            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold ${text} leading-[1.1] sm:!text-[53px]`}>
+            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold ${text} leading-[1.1] sm:!text-[53px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.08)]`}>
               Advogado Especialista em Superendividamento: Parcele suas <span style={{ color: 'var(--color-accent)' }}>dívidas</span> em até 5 anos
             </h1>
             <p className={`text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto lg:mx-0 leading-relaxed`}>
