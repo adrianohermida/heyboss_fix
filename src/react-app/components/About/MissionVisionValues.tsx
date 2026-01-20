@@ -20,15 +20,15 @@ const items = [
 ];
 
 const MissionVisionValues: React.FC = () => (
-  <section className="py-16 bg-brand-dark">
+  <section className="py-16 bg-[var(--color-bg-alt)]">
     <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-3 gap-6">
       {items.map((item, idx) => (
-        <div key={idx} className="bg-brand-elevated p-6 rounded-2xl border border-white/5 hover:border-brand-primary/30 transition-all group">
-          <div className="bg-brand-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <item.icon className="text-brand-primary" size={24} />
+        <div key={idx} className="bg-[var(--color-cardElevated)] p-6 rounded-2xl border border-[var(--color-border)]/10 hover:border-[var(--color-brand-primary)]/30 transition-all group">
+          <div className="bg-[var(--color-brand-primary)]/10 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <item.icon className="text-[var(--color-brand-primary)]" size={24} />
           </div>
-          <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-          <p className="text-white/50 text-xs leading-relaxed">{item.desc}</p>
+          <h3 className="text-lg font-bold text-[var(--color-brand)] mb-2">{item.title}</h3>
+          <p className="text-[var(--color-text-secondary)]/80 text-xs leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>

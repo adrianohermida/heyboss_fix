@@ -11,7 +11,7 @@ const ProfileSection: React.FC = () => (
           alt="Dr. Adriano Hermida Maia" 
           className="rounded-2xl shadow-xl w-full object-cover aspect-[4/5]"
         />
-        <div className="absolute bottom-4 left-4 right-4 bg-[var(--color-bg-alt)]/90 backdrop-blur p-4 rounded-xl border border-[var(--color-border)]/10">
+        <div className="absolute bottom-4 left-4 right-4 bg-[var(--color-cardElevated)]/90 backdrop-blur p-4 rounded-xl border border-[var(--color-border)]/10">
           <p className="text-[var(--color-brand)] font-bold text-lg">Dr. Adriano Hermida Maia</p>
           <p className="text-[var(--color-brand-primary)] font-medium text-xs">OAB/SP 476.963 | Especialista em Dívidas</p>
         </div>

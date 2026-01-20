@@ -32,7 +32,7 @@ const AboutPage2: React.FC = () => {
 
   return (
     <>
-      <div className={`min-h-screen ${mode === 'clear' ? 'bg-brand-dark text-white' : 'bg-brand-dark text-white'} selection:bg-brand-primary selection:text-white`}>
+      <div className={`min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] selection:bg-[var(--color-brand-primary)] selection:text-white`}>
         <Header />
         <main>
           <AboutHero />
