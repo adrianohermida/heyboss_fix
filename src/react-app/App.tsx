@@ -68,7 +68,7 @@ export default function App() {
           <Route path="/checkout/cancel" element={<CheckoutCancelPage />} />
           <Route path="/appointments" element={<AppointmentsPage />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
-          {/* Protected Routes */}
+          {/* Protected Routes: apenas dashboard e profile */}
           <Route element={<AuthProtect />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<ProfilePage />} />

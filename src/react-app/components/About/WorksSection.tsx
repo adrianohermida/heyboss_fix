@@ -20,18 +20,18 @@ const WorksSection: React.FC = () => (
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {works.map((work, idx) => (
-          <div key={idx} className="group bg-[var(--color-cardElevated)] rounded-2xl overflow-hidden border border-[var(--color-border)]/10 hover:border-[var(--color-brand-primary)]/30 transition-all">
+          <div key={idx} className="group bg-white rounded-2xl overflow-hidden border border-[var(--color-border)]/20 shadow-lg hover:border-[var(--color-success)]/40 transition-all">
             <div className="aspect-[3/4] overflow-hidden relative">
               <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] to-transparent opacity-60" aria-hidden />
+              <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent opacity-60" aria-hidden />
               <div className="absolute bottom-4 left-4 right-4">
-                <span className="bg-[var(--color-brand-primary)] text-white text-[10px] font-bold uppercase px-2 py-1 rounded mb-1 inline-block">{work.type}</span>
-                <h3 className="text-base font-bold text-[var(--color-brand)] leading-tight">{work.title}</h3>
+                <span className="bg-[var(--color-success)] text-white text-[10px] font-bold uppercase px-2 py-1 rounded mb-1 inline-block">{work.type}</span>
+                <h3 className="text-base font-bold text-[#394a66] leading-tight">{work.title}</h3>
               </div>
             </div>
             <div className="p-4">
-              <p className="text-[var(--color-text-secondary)]/80 text-xs leading-relaxed mb-3">{work.desc}</p>
-              <button className="text-[var(--color-brand-primary)] font-bold text-xs flex items-center gap-2 group-hover:gap-3 transition-all">
+              <p className="text-[var(--color-text)] text-xs leading-relaxed mb-3">{work.desc}</p>
+              <button className="text-[var(--color-success)] font-bold text-xs flex items-center gap-2 group-hover:gap-3 transition-all">
                 Saiba mais <ExternalLink size={14} />
               </button>
             </div>

@@ -24,10 +24,10 @@ const Timeline: React.FC = () => (
         {timeline.map((item, idx) => (
           <div key={idx} className={`flex flex-col md:flex-row items-center gap-4 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
             <div className="flex-1 w-full md:w-auto">
-              <div className={`bg-[var(--color-cardElevated)] p-4 md:p-6 rounded-2xl border border-[var(--color-border)]/10 hover:border-[var(--color-brand-primary)]/30 transition-all ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                <span className="text-[var(--color-brand-primary)] font-black text-lg md:text-2xl mb-1 block">{item.year}</span>
-                <h3 className="text-base md:text-xl font-bold text-[var(--color-brand)] mb-1">{item.title}</h3>
-                <p className="text-[var(--color-text-secondary)]/80 text-xs md:text-sm leading-relaxed">{item.desc}</p>
+              <div className={`bg-white p-4 md:p-6 rounded-2xl border border-[var(--color-border)]/20 shadow-lg hover:border-[var(--color-brand-primary)]/40 transition-all ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                <span className="text-[var(--color-success)] font-black text-lg md:text-2xl mb-1 block">{item.year}</span>
+                <h3 className="text-base md:text-xl font-bold text-[#394a66] mb-1">{item.title}</h3>
+                <p className="text-[var(--color-text)] text-xs md:text-sm leading-relaxed">{item.desc}</p>
               </div>
             </div>
             <div className="relative z-10 flex items-center justify-center">
