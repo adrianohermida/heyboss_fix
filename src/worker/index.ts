@@ -322,6 +322,41 @@ app.post("/api/verify-otp", async (c) => {
 // == APPOINTMENTS LOGIC (INTERNAL DB)                            ==
 // =================================================================
 
+// Mock endpoints for ClientPortal
+app.get("/api/processos/me", async (c) => {
+  return c.json([]);
+});
+app.get("/api/faturas/me", async (c) => {
+  return c.json([]);
+});
+app.get("/api/planos/me", async (c) => {
+  return c.json([]);
+});
+app.get("/api/documentos/me", async (c) => {
+  return c.json([]);
+});
+app.get("/api/my-appointments", async (c) => {
+  return c.json([]);
+});
+app.get("/api/users/personal-data", async (c) => {
+  return c.json({});
+});
+app.get("/api/users/summary", async (c) => {
+  return c.json({ processos: 0, faturas: 0, tickets: 0, appointments: 0 });
+});
+app.get("/api/tickets", async (c) => {
+  return c.json([]);
+});
+app.get("/api/tickets/:id/messages", async (c) => {
+  return c.json([]);
+});
+app.post("/api/tickets/:id/reply", async (c) => {
+  return c.json({ success: true });
+});
+app.post("/api/tickets", async (c) => {
+  return c.json({ success: true });
+});
+
 // Mock GET /api/users/me endpoint (public)
 app.get("/api/users/me", async (c) => {
   return c.json({
