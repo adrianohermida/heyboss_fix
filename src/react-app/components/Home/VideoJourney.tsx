@@ -69,7 +69,8 @@ const VideoJourney: React.FC = () => {
                 </div>
                 <button 
                   onClick={handleNext}
-                  className="w-full sm:w-auto bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/90 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all hover:scale-105 shadow-lg shadow-[var(--color-brand-primary)]/20"
+                  className="w-full sm:w-auto text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all hover:scale-105 shadow-lg"
+                  style={{ background: '#394a66', boxShadow: '0 2px 12px 0 #394a6633' }}
                 >
                   {currentStep === 3 ? 'Concluir e Ver Opções' : 'Próximo Vídeo'}
                   <ChevronRight size={20} />

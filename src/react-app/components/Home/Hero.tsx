@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           <div className={`text-center lg:text-left space-y-8`}>
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full`} style={{ background: 'var(--color-accent)', opacity: 0.12, border: '1px solid var(--color-accent)' }}>
               <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent)' }} />
-              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--color-accent)' }}>Lei 14.181/2021 - Superendividamento</span>
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: '#394a66' }}>Lei 14.181/2021 - Superendividamento</span>
             </div>
             <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold ${text} leading-[1.1] sm:!text-[53px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.08)]`}>
               Advogado Especialista em Superendividamento: Parcele suas <span style={{ color: 'var(--color-accent)' }}>dívidas</span> em até 5 anos
@@ -38,10 +38,10 @@ const Hero: React.FC = () => {
             </div>
             <div className="flex items-center gap-6 justify-center lg:justify-start pt-4">
               <div className="flex -space-x-3">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia1.jpg" className="w-10 h-10 rounded-full border-2 border-[var(--color-brand-primary)] object-cover" alt="Família Satisfeita 1" />
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia2.jpg" className="w-10 h-10 rounded-full border-2 border-[var(--color-brand-primary)] object-cover" alt="Família Satisfeita 2" />
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia3.jpg" className="w-10 h-10 rounded-full border-2 border-[var(--color-brand-primary)] object-cover" alt="Família Satisfeita 3" />
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia4.jpg" className="w-10 h-10 rounded-full border-2 border-[var(--color-brand-primary)] object-cover" alt="Família Satisfeita 4" />
+                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia1.jpg" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 1" />
+                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia2.jpg" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 2" />
+                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia3.jpg" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 3" />
+                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/avatars/familia4.jpg" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 4" />
               </div>
               <div className="text-sm">
                 <div className="flex" style={{ color: 'var(--color-accent)' }}>
