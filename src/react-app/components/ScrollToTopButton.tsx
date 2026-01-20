@@ -12,7 +12,8 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-6 right-6 z-50 bg-brand-primary text-white p-3 rounded-full shadow-lg hover:bg-brand-accent transition-all"
+      className="fixed bottom-8 right-8 z-[1050] bg-brand-primary text-white p-3 rounded-full shadow-lg hover:bg-brand-success focus-visible:ring-2 focus-visible:ring-brand-success transition-all"
+      style={{ marginBottom: '96px' }} // Extra margin to clear Freshchat widget
       aria-label="Voltar ao início"
     >
       <ArrowUp size={24} />

@@ -179,18 +179,27 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
               className="p-2 focus-visible:ring-2 focus-visible:ring-brand-primary"
-              style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}
+              style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.95 }}
             >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {isMobileMenuOpen ? <X size={28} strokeWidth={2.2} /> : <Menu size={28} strokeWidth={2.2} />}
             </button>
-            {/* Mode toggle button */}
+            {/* Modern theme toggle button */}
             <button
               onClick={() => setMode(mode === 'clear' ? 'dark' : 'clear')}
               aria-label={mode === 'clear' ? 'Ativar modo escuro' : 'Ativar modo claro'}
-              className="ml-2 p-2 rounded-full border border-brand-primary bg-white/10 hover:bg-brand-primary/10 transition focus-visible:ring-2 focus-visible:ring-brand-primary"
-              style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}
+              className="ml-2 p-2 rounded-full border border-brand-primary bg-white/10 hover:bg-brand-success/20 transition focus-visible:ring-2 focus-visible:ring-brand-success"
+              style={mode === 'clear' ? { color: '#394a66', background: '#fff' } : { color: '#fff', background: '#232a3b' }}
             >
-              {mode === 'clear' ? <span>🌙</span> : <span>☀️</span>}
+              {mode === 'clear' ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95-1.41-1.41M6.34 6.34 4.93 4.93m12.02 0-1.41 1.41M6.34 17.66l-1.41 1.41" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
