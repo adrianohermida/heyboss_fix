@@ -322,6 +322,36 @@ app.post("/api/verify-otp", async (c) => {
 // == APPOINTMENTS LOGIC (INTERNAL DB)                            ==
 // =================================================================
 
+// Mock GET /api/users/me endpoint (public)
+app.get("/api/users/me", async (c) => {
+  return c.json({
+    email: "demo@hermidamaia.adv.br",
+    name: "Demo User",
+    isAdmin: false,
+    id: "demo-user-id"
+  });
+});
+
+// Mock GET /api/blog endpoint (public)
+app.get("/api/blog", async (c) => {
+  return c.json([
+    {
+      id: "1",
+      title: "Como escolher o melhor advogado para seu caso",
+      date: "2026-01-20",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+      url: "/blog/como-escolher-advogado"
+    },
+    {
+      id: "2",
+      title: "Direitos do consumidor: o que você precisa saber",
+      date: "2026-01-18",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800",
+      url: "/blog/direitos-consumidor"
+    }
+  ]);
+});
+
 // Simulations endpoint: accepts POST requests from frontend
 app.post("/api/simulations", async (c) => {
   try {
