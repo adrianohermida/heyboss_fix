@@ -106,7 +106,11 @@ const Header = () => {
                   style={{ color: 'var(--color-brand)' }}
                 >
                   <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white font-bold text-xs">
-                    {user.name?.[0] || user.email?.[0].toUpperCase()}
+                    {user.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
+                    ) : (
+                      user.name?.[0] || user.email?.[0].toUpperCase()
+                    )}
                   </div>
                   <span className="text-sm font-medium hidden xl:inline" style={{ color: 'var(--color-brand)' }}>{user.name || user.email.split('@')[0]}</span>
                   <ChevronDown size={16} className={`transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--color-brand)', opacity: 0.5 }} />
