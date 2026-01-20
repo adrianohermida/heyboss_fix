@@ -47,7 +47,7 @@ const Calculator: React.FC = () => {
       setResult(calculationResult);
       setIsSaving(true);
       try {
-        await fetch('/api/simulations', {
+        const res = await fetch('/api/simulations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -58,6 +58,10 @@ const Calculator: React.FC = () => {
             }
           })
         });
+        if (res.status === 405) {
+          // Mostra mensagem amigável ao usuário, não loga erro no console
+          alert('A simulação não pôde ser salva. Este recurso está temporariamente indisponível.');
+        }
       } catch (error) {
         // erro ao salvar simulação
       } finally {
