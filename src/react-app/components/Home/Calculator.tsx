@@ -236,11 +236,14 @@ const Calculator: React.FC = () => {
                             </div>
                           </>
                         )}
-                        <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
-                          * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
-                        </p>
-                      </div>
+                      <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
+                        * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
+                      </p>
                     </div>
                   </div>
-                </section>
-              );
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
