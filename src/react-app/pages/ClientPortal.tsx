@@ -35,8 +35,6 @@ import { contactFormTheme } from '../components/CustomForm/themes';
 
 import { cn } from '../utils';
 import { useTheme } from '../../styles/ThemeProvider';
-import ClientPortalProcessos from '../components/ClientPortal/ClientPortalProcessos';
-import ClientPortalTickets from '../components/ClientPortal/ClientPortalTickets';
 import ClientPortalFaturas from '../components/ClientPortal/ClientPortalFaturas';
 import ClientPortalCRM from '../components/ClientPortal/ClientPortalCRM';
 import ClientPortalProcessos from '../components/ClientPortal/ClientPortalProcessos';
@@ -177,12 +175,11 @@ const ClientPortal: React.FC = () => {
           <ClientPortalSidebar user={user} activeTab={activeTab} setActiveTab={setActiveTab} exporting={exporting} onExport={handleExportData} />
           <div className="flex-1 min-w-0 space-y-8">
             {activeTab === 'overview' && <ClientPortalOverview user={user} summary={summary} setActiveTab={setActiveTab} />}
-            {activeTab === 'processos' && <ClientPortalProcessos processos={processos} loading={loading} mode={mode} />}
-            {activeTab === 'tickets' && <ClientPortalTickets user={user} access_token={access_token} mode={mode} />}
-            {activeTab === 'financeiro' && <ClientPortalFinanceiro faturas={faturas} loading={loading} mode={mode} />}
-            {activeTab === 'documentos' && <ClientPortalDocumentos documentos={documentos} loading={loading} user={user} allConfigs={allConfigs} mode={mode} />}
-            {activeTab === 'plano' && <ClientPortalPlano planos={planos} loading={loading} mode={mode} />}
-            {activeTab === 'agenda' && <ClientPortalAgenda appointments={appointments} loadingAppointments={loadingAppointments} mode={mode} />}
+            {activeTab === 'processos' && <ClientPortalProcessos />}
+            {activeTab === 'tickets' && <ClientPortalTickets />}
+            {activeTab === 'financeiro' && <ClientPortalFaturas />}
+            {activeTab === 'crm' && <ClientPortalCRM leads={[]} handleImportLeads={()=>{}} selectedLeadId={null} />}
+            {activeTab === 'publicacoes' && <ClientPortalPublicacoes />}
           </div>
         </div>
       </main>
