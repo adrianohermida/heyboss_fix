@@ -24,13 +24,13 @@ const HowItWorks: React.FC = () => {
             { icon: Handshake, title: "Negociação Especializada", desc: "Entramos em contato com os credores." },
             { icon: CheckCircle2, title: "Solução Definitiva", desc: "Plano de pagamento aprovado judicialmente." }
           ].map((step, idx) => (
-            <div key={idx} className="relative z-10 text-center space-y-6 group bg-white rounded-3xl p-6 shadow-lg border border-[var(--color-success)]/30 transition-all">
+            <div key={idx} className="relative z-10 text-center space-y-6 group bg-[var(--color-cardElevated)] rounded-3xl p-6 shadow-lg border border-[var(--color-success)]/30 transition-all">
               <div className="w-20 h-20 bg-white border border-[var(--color-success)]/40 rounded-3xl flex items-center justify-center mx-auto shadow">
                 <step.icon className="text-[var(--color-success)]" size={36} />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-[#394a66]">{step.title}</h3>
-                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed px-4">{step.desc}</p>
+                <h3 className="text-lg font-bold text-[var(--color-brand-primary)] dark:text-white">{step.title}</h3>
+                <p className="text-[var(--color-text)]/80 text-sm leading-relaxed px-4">{step.desc}</p>
               </div>
             </div>
           ))}
