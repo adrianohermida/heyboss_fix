@@ -13,9 +13,10 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className={`text-center lg:text-left space-y-8`}>
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border shadow-sm" style={{ background: '#e6f9f0', borderColor: '#00d969', boxShadow: '0 2px 8px 0 rgba(0,217,105,0.10)' }}>
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#00d969' }} />
-              <span className="text-xs font-extrabold uppercase tracking-widest" style={{ color: '#009e5c', letterSpacing: 1.5, textShadow: '0 1px 0 #fff' }}>Lei 14.181/2021 - Superendividamento</span>
+            {/* Badge com contraste máximo */}
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border-2 shadow-sm" style={{ background: '#00d969', borderColor: '#00b85b', boxShadow: '0 2px 8px 0 rgba(0,217,105,0.18)' }}>
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#fff' }} />
+              <span className="text-xs font-extrabold uppercase tracking-widest" style={{ color: '#fff', letterSpacing: 1.5, textShadow: '0 1px 0 #00b85b' }}>LEI 14.181/2021 • SUPERENDIVIDAMENTO</span>
             </div>
             <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold ${text} leading-[1.1] sm:!text-[53px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.08)]`}>
               Advogado Especialista em Superendividamento: Parcele suas <span style={{ color: 'var(--color-accent)' }}>dívidas</span> em até 5 anos
@@ -38,14 +39,14 @@ const Hero: React.FC = () => {
             </div>
             <div className="flex items-center gap-6 justify-center lg:justify-start pt-4">
               <div className="flex -space-x-3">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=80&h=80&q=80" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 1" />
-                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=80&h=80&q=80" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 2" />
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=80&h=80&q=80" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 3" />
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=80&h=80&q=80" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Família Satisfeita 4" />
+                <img src="/assets/avatars/avatar1.png" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Avatar 1" />
+                <img src="/assets/avatars/avatar2.png" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Avatar 2" />
+                <img src="/assets/avatars/avatar3.png" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Avatar 3" />
+                <img src="/assets/avatars/avatar4.png" className="w-10 h-10 rounded-full border-2 border-[#00d969] object-cover" alt="Avatar 4" />
               </div>
               <div className="text-sm">
-                <div className="flex" style={{ color: 'var(--color-accent)' }}>
-                  {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
+                <div className="flex gap-0.5" style={{ color: '#00d969' }}>
+                  {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={16} fill="#00d969" stroke="#00d969" />)}
                 </div>
                 <p className="text-[var(--color-text-secondary)] font-medium">+2.500 famílias satisfeitas</p>
               </div>
