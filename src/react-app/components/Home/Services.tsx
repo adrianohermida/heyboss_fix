@@ -21,14 +21,14 @@ const Services: React.FC = () => {
             "Representação Junto ao BACEN e Órgãos de Defesa do Consumidor",
             "Defesa Contra Fraudes Bancárias e Golpes Pix"
           ].map((service, idx) => (
-            <div key={idx} className="group flex flex-col justify-between p-8 rounded-2xl shadow-lg transition-all bg-white border border-[var(--color-success)]/30">
+            <div key={idx} className={`group flex flex-col justify-between p-8 rounded-2xl shadow-lg transition-all border ${mode === 'clear' ? 'bg-white border-[var(--color-success)]/30' : 'bg-[var(--color-card)] border-[var(--color-border)]/30'}`}>
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-white border border-[var(--color-success)]/40 shadow" >
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center shadow ${mode === 'clear' ? 'bg-white border border-[var(--color-success)]/40' : 'bg-[var(--color-cardElevated)] border border-[var(--color-success)]/40'}`} >
                   <CheckCircle2 style={{ color: 'var(--color-success)' }} size={28} />
                 </div>
                 <h3 className={`text-lg md:text-xl font-bold ${mode === 'clear' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-success)]'}`}>{service}</h3>
               </div>
-              <button className="mt-8 font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform focus-visible:ring-2 text-[var(--color-success)]">
+              <button className={`mt-8 font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform focus-visible:ring-2 ${mode === 'clear' ? 'text-[var(--color-success)]' : 'text-white/90'}`} style={mode === 'clear' ? {} : { background: 'rgba(0,217,105,0.08)', borderRadius: 8, padding: '8px 16px' }}>
                 Saiba mais <ChevronRight size={16} />
               </button>
             </div>

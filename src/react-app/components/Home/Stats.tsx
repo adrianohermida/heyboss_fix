@@ -20,12 +20,12 @@ const Stats: React.FC = () => {
             { icon: Zap, title: "Solução Rápida", desc: "Processos otimizados para eliminar dívidas de forma definitiva e ágil." },
             { icon: Smile, title: "Tranquilidade", desc: "Recupere sua dignidade financeira com nossa consultoria jurídica especializada." }
           ].map((stat, idx) => (
-            <div key={idx} className="p-8 rounded-2xl transition-all group shadow-lg bg-white border border-[var(--color-success)]/30 hover:border-[var(--color-success)]/60">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-white border border-[var(--color-success)]/40 shadow">
+            <div key={idx} className={`p-8 rounded-2xl transition-all group shadow-lg border hover:border-[var(--color-success)]/60 ${mode === 'clear' ? 'bg-white border-[var(--color-success)]/30' : 'bg-[var(--color-card)] border-[var(--color-border)]/30'}`}>
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow ${mode === 'clear' ? 'bg-white border border-[var(--color-success)]/40' : 'bg-[var(--color-cardElevated)] border border-[var(--color-success)]/40'}`}>
                 <stat.icon className="text-[var(--color-success)]" size={32} />
               </div>
               <h3 className={`text-xl font-bold mb-3 ${mode === 'clear' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-success)]'}`}>{stat.title}</h3>
-              <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">{stat.desc}</p>
+              <p className={`text-sm leading-relaxed ${mode === 'clear' ? 'text-[var(--color-text-secondary)]' : 'text-white/80'}`}>{stat.desc}</p>
             </div>
           ))}
         </div>

@@ -18,16 +18,16 @@ const Testimonials: React.FC = () => {
             { name: "João Santos", text: "Excelente atendimento. Profissionais extremamente competentes que realmente entendem da Lei do Superendividamento.", rating: 5 },
             { name: "Ana Costa", text: "Minha vida mudou. Estava presa em juros abusivos de cartões e hoje tenho um plano de pagamento que cabe no meu bolso.", rating: 5 }
           ].map((t, idx) => (
-            <div key={idx} className="bg-[var(--color-cardElevated)] border border-[var(--color-border)]/30 shadow-xl p-8 rounded-3xl relative flex flex-col h-full">
+            <div key={idx} className={`border shadow-xl p-8 rounded-3xl relative flex flex-col h-full ${mode === 'clear' ? 'bg-[var(--color-cardElevated)] border-[var(--color-border)]/30' : 'bg-[var(--color-card)] border-[var(--color-border)]/30'}`}>
               <div className="flex text-[var(--color-success)] mb-6" aria-label="Nota máxima, 5 estrelas">
                 {Array.from({ length: t.rating }).map((_, i) => <Star key={i} size={18} fill="currentColor" aria-hidden="true" />)}
               </div>
-              <p className="italic mb-8 leading-relaxed text-[var(--color-text)]/80 text-base">"{t.text}"</p>
+              <p className={`italic mb-8 leading-relaxed text-base ${mode === 'clear' ? 'text-[var(--color-text)]/80' : 'text-white/80'}`}>"{t.text}"</p>
               <div className="flex items-center gap-4 mt-auto">
                 <img src={`https://ui-avatars.com/api/?name=${t.name.replace(' ', '+')}&background=00d969&color=fff`} className="w-12 h-12 rounded-full border-2 border-[var(--color-success)] shadow" alt={`Depoimento de ${t.name} sobre sucesso na redução de dívidas`} loading="lazy" />
                 <div>
-                  <p className="font-bold text-[var(--color-brand-primary)] dark:text-white text-base">{t.name}</p>
-                  <p className="text-[var(--color-text-secondary)]/70 dark:text-white/60 text-xs">Cliente Verificado</p>
+                  <p className={`font-bold text-base ${mode === 'clear' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-success)]'}`}>{t.name}</p>
+                  <p className={`text-xs ${mode === 'clear' ? 'text-[var(--color-text-secondary)]/70' : 'text-white/60'}`}>Cliente Verificado</p>
                 </div>
               </div>
             </div>
