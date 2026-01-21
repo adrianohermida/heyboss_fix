@@ -7,7 +7,7 @@ const PodcastSection: React.FC = () => (
       <div className="bg-[var(--color-cardElevated)] rounded-2xl p-6 md:p-10 border border-[var(--color-border)]/10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center httpgap-2 bg-[var(--color-success)]/10 border border-[var(--color-success)]/20 px-3 py-1 rounded-full">
+            <div className="inline-flex items-center gap-2 bg-[var(--color-success)]/10 border border-[var(--color-success)]/20 px-3 py-1 rounded-full">
               <Mic size={16} className="text-[var(--color-success)]" />
               <span className="text-[var(--color-success)] text-xs font-bold uppercase tracking-widest">Conteúdo Educativo</span>
             </div>
