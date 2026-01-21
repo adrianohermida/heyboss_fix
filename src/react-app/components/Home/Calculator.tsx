@@ -35,6 +35,15 @@ const Calculator: React.FC = () => {
 
   const [isSaving, setIsSaving] = React.useState(false);
 
+  const reset = () => {
+    setFormData({
+      totalDebt: '',
+      monthlyInstallment: '',
+      monthlyIncome: ''
+    });
+    setResult(null);
+  };
+
   const calculate = async () => {
     const installment = parseCurrency(formData.monthlyInstallment);
     const income = parseCurrency(formData.monthlyIncome);
