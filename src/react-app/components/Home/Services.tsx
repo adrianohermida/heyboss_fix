@@ -4,7 +4,7 @@ import { CheckCircle2, ChevronRight } from 'lucide-react';
 import { useTheme } from '../../../styles/ThemeProvider';
 
 const Services: React.FC = () => {
-  useTheme();
+  const { mode } = useTheme();
   return (
     <section id="servicos" className="py-24 bg-[var(--color-bg-alt)]" aria-labelledby="servicos-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

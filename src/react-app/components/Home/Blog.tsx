@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { apiBase } from '../../utils/apiBase';
+import { useTheme } from '../../../styles/ThemeProvider';
 
 const Blog: React.FC = () => {
   const [posts, setPosts] = React.useState<any[]>([]);
@@ -45,6 +46,7 @@ const Blog: React.FC = () => {
       });
   }, []);
 
+  const { mode } = useTheme();
   return (
     <section id="blog" className="py-24 bg-[var(--color-bg-alt)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

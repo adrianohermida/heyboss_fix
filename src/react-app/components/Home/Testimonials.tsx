@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 import { useTheme } from '../../../styles/ThemeProvider';
 
 const Testimonials: React.FC = () => {
-  useTheme();
+  const { mode } = useTheme();
   return (
     <section className="py-24 bg-[var(--color-bg-alt)]" aria-labelledby="depoimentos-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
