@@ -21,6 +21,7 @@ const LogoHM = ({ size = 48, rounded = true, bg = 'var(--color-brand)' }: { size
 };
 
 const Header = () => {
+  const { mode } = useTheme();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
