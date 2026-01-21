@@ -48,15 +48,15 @@ const Calculator: React.FC = () => {
       setIsSaving(true);
       try {
         const res = await fetch('/api/simulations', {
-                          )}
-                        <p className="text-center text-[10px] text-[var(--color-text)]/30 mt-8">
-                          * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
-                        </p>
-              ...formData,
-              ...calculationResult,
-              timestamp: new Date().toISOString()
-            }
-          })
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...formData,
+            ...calculationResult,
+            timestamp: new Date().toISOString(),
+          }),
         });
         if (res.status === 405) {
           // Mostra mensagem amigável ao usuário, não loga erro no console
@@ -203,3 +203,13 @@ const Calculator: React.FC = () => {
                     * Seus dados estão protegidos pela LGPD e serão usados apenas para esta análise.
                   </p>
                 </div>
+              {/* ...existing code... */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Calculator;
