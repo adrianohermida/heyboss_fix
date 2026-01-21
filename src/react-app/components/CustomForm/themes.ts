@@ -15,28 +15,28 @@ export const contactFormTheme: Partial<IFormTheme> = {
     buttonSection: "pt-6",
   },
   field: {
-    label: "block text-sm font-semibold text-white/70 mb-2 ml-1",
-    requiredIndicator: "text-brand-primary ml-1",
+    label: "block text-sm font-semibold text-[var(--color-text)]/80 dark:text-white/80 mb-2 ml-1",
+    requiredIndicator: "text-[var(--color-success)] ml-1 font-bold",
     errorMessage: "mt-2 text-xs text-red-400 font-medium",
   },
   input: {
-    base: "w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all placeholder:text-white/20",
-    normal: "border-white/10",
+    base: "w-full bg-[var(--color-card)] border border-[var(--color-border)]/30 rounded-xl px-5 py-4 text-[var(--color-text)] dark:text-white focus:border-[var(--color-brand-primary)] outline-none transition-all placeholder:text-[var(--color-text-secondary)]/60 dark:placeholder:text-white/30",
+    normal: "border-[var(--color-border)]/30",
     error: "border-red-500/50",
   },
   textarea: {
-    base: "w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all placeholder:text-white/20 min-h-[150px]",
-    normal: "border-white/10",
+    base: "w-full bg-[var(--color-card)] border border-[var(--color-border)]/30 rounded-xl px-5 py-4 text-[var(--color-text)] dark:text-white focus:border-[var(--color-brand-primary)] outline-none transition-all placeholder:text-[var(--color-text-secondary)]/60 dark:placeholder:text-white/30 min-h-[150px]",
+    normal: "border-[var(--color-border)]/30",
     error: "border-red-500/50",
   },
   select: {
-    base: "w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-white focus:border-brand-primary outline-none transition-all appearance-none",
-    normal: "border-white/10",
+    base: "w-full bg-[var(--color-card)] border border-[var(--color-border)]/30 rounded-xl px-5 py-4 text-[var(--color-text)] dark:text-white focus:border-[var(--color-brand-primary)] outline-none transition-all appearance-none",
+    normal: "border-[var(--color-border)]/30",
     error: "border-red-500/50",
   },
   buttons: {
     submit: {
-      base: "w-full bg-brand-primary hover:bg-brand-primary/90 text-white py-5 rounded-2xl font-extrabold text-xl shadow-lg shadow-brand-primary/20 transition-all hover:scale-[1.02] active:scale-95",
+      base: "w-full bg-[var(--color-brand-primary)] hover:bg-[var(--color-success)] text-white py-5 rounded-2xl font-extrabold text-xl shadow-lg shadow-brand-primary/20 transition-all hover:scale-[1.02] active:scale-95 focus:ring-2 focus:ring-[var(--color-success)] focus:outline-none",
     },
     reset: {
       base: "hidden",

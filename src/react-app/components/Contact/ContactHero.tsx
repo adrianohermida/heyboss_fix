@@ -4,8 +4,10 @@
 import React from 'react';
 const ContactHero: React.FC = () => (
   <section className="text-center mb-16 animate-fade-in">
-    <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">Fale com um Advogado Especialista em Dívidas</h1>
-    <p className="text-white/60 max-w-2xl mx-auto text-lg">
+    <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-[var(--color-brand-primary)] dark:text-[var(--color-brand-primary)] drop-shadow-sm">
+      Fale com um Advogado Especialista em Dívidas
+    </h1>
+    <p className="max-w-2xl mx-auto text-lg text-[var(--color-text)]/80 dark:text-white/80">
       Estamos prontos para ajudar você a recuperar sua paz financeira através da Lei do Superendividamento. Escolha o canal de sua preferência.
     </p>
   </section>
