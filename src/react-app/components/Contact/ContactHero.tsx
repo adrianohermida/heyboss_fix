@@ -30,15 +30,3 @@ const ContactHero: React.FC = () => {
   );
 };
 export default ContactHero;
-export default ContactHero;
-const ContactHero: React.FC = () => (
-  <section className="text-center mb-16 animate-fade-in bg-[var(--color-cardElevated)] py-12">
-    <h1 className="text-4xl sm:text-5xl font-extrabold mb-6" style={{ color: 'var(--color-success)' }}>
-      Fale com um Advogado Especialista em Dívidas
-    </h1>
-    <p className="max-w-2xl mx-auto text-lg" style={{ color: 'var(--color-brand)' }}>
-      Estamos prontos para ajudar você a recuperar sua paz financeira através da Lei do Superendividamento. Escolha o canal de sua preferência.
-    </p>
-  </section>
-);
-export default ContactHero;
