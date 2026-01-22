@@ -353,6 +353,7 @@ const AboutPage = () => {
       </div>
       <ScrollToTopButton />
     </>
+        <Footer />
   );
 };
 
