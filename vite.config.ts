@@ -4,6 +4,7 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 import { reactComponentTagger } from 'react-component-tagger';
 
 export default defineConfig({
+  base: '/heyboss_fix/',
   plugins: [react(), reactComponentTagger() as PluginOption, cloudflare()],
   server: {
     proxy: {
