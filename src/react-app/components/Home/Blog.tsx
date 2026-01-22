@@ -27,18 +27,21 @@ const Blog: React.FC = () => {
             title: "Lei do Superendividamento: Como sair do sufoco financeiro legalmente", 
             date: "20 Mai, 2024",
             image: "https://heyboss.heeyo.ai/gemini-image-c5df3e56df0a49fdb468a4708ef7c8a8.png",
+            slug: "lei-do-superendividamento",
             url: "#"
           },
           { 
             title: "Justiça garante preservação do mínimo existencial para famílias endividadas", 
             date: "12 Mai, 2024",
             image: "https://heyboss.heeyo.ai/gemini-image-805a2be1c3c8401c828287f865b36b4c.png",
+            slug: "justica-garante-minimo-existencial",
             url: "#"
           },
           { 
             title: "Renegociação em bloco: A estratégia definitiva contra juros abusivos", 
             date: "05 Mai, 2024",
             image: "https://heyboss.heeyo.ai/gemini-image-66fd2e2355974def87a7cb3056023985.png",
+            slug: "renegociacao-em-bloco",
             url: "#"
           }
         ]);
