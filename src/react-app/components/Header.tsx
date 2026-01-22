@@ -55,14 +55,42 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Desktop theme switcher (direita do header) - removed */}
           <Link to="/" className="flex items-center gap-4 group">
-            <span className="inline-flex items-center justify-center rounded-2xl shadow-lg border-2 border-[var(--color-success)] bg-white dark:bg-[var(--color-brand)] transition-all" style={{ width: 52, height: 52 }}>
-              <img src="/assets/img/logo_lzI6JHzO.webp" alt="Logo Dr. Adriano Hermida Maia" style={{ width: 40, height: 40, objectFit: 'contain', filter: mode === 'clear' ? 'none' : 'brightness(1.2) contrast(1.1)' }} onError={(e) => { e.currentTarget.src = '/assets/img/473411138_1420160585659716_5467583944226702322_n.png'; }} />
+            <span
+              className={`inline-flex items-center justify-center rounded-2xl shadow-lg border-2 transition-all ${mode === 'clear' ? 'border-[var(--color-success)] bg-white' : 'border-[var(--color-success)] bg-[var(--color-brand)]'}`}
+              style={{ width: 52, height: 52 }}
+            >
+              <img
+                src="/assets/img/logo_lzI6JHzO.webp"
+                alt="Logo Dr. Adriano Hermida Maia"
+                style={{ width: 40, height: 40, objectFit: 'contain', filter: mode === 'clear' ? 'none' : 'brightness(1.2) contrast(1.1)' }}
+                onError={(e) => {
+                  const fallback = '/assets/img/473411138_1420160585659716_5467583944226702322_n.png';
+                  if (e.currentTarget.src !== window.location.origin + fallback) {
+                    e.currentTarget.src = fallback;
+                  }
+                }}
+              />
             </span>
             <div className="flex flex-col ml-2">
-              <span className="font-extrabold text-xl leading-tight tracking-tight" style={{ color: mode === 'clear' ? '#173D34' : '#F1F5ED', fontFamily: 'inherit', textShadow: mode === 'clear' ? 'none' : '0 2px 8px #00d96940' }}>
+              <span
+                className="font-extrabold text-xl leading-tight tracking-tight"
+                style={{
+                  color: mode === 'clear' ? 'var(--color-brand)' : '#fff',
+                  fontFamily: 'inherit',
+                  textShadow: mode === 'clear' ? 'none' : '0 2px 8px #00d96940',
+                }}
+              >
                 Dr. Adriano Hermida Maia
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? '#00d969' : '#F1F5ED', opacity: 1, fontFamily: 'inherit', letterSpacing: 2 }}>
+              <span
+                className="text-xs font-semibold uppercase tracking-wider"
+                style={{
+                  color: mode === 'clear' ? 'var(--color-success)' : '#fff',
+                  opacity: 1,
+                  fontFamily: 'inherit',
+                  letterSpacing: 2,
+                }}
+              >
                 Defesa do Superendividado
               </span>
             </div>
