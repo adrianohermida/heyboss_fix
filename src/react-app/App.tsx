@@ -44,38 +44,40 @@ export default function App() {
   const showFooter = !hideFooterPaths.includes(location.pathname)
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
-      {showHeader && <Header />}
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogPostPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/about2" element={<AboutPage2 />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/contact2" element={<ContactPage2 />} />
-          <Route path="/unsubscribe" element={<UnsubscribePage />} />
-          <Route path="/process/:id" element={<ProcessDetailPage />} />
-          <Route path="/client-portal" element={<ClientPortal />} />
-          <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
-          <Route path="/checkout/error" element={<CheckoutErrorPage />} />
-          <Route path="/checkout/cancel" element={<CheckoutCancelPage />} />
-          <Route path="/appointments" element={<AppointmentsPage />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
-          {/* Protected Routes: apenas dashboard e profile */}
-          <Route element={<AuthProtect />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </Route>
-        </Routes>
-      </Suspense>
-      {showFooter && <Footer />}
-    </div>
+    <ThemeProvider>
+      <div style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
+        {showHeader && <Header />}
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about2" element={<AboutPage2 />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/contact2" element={<ContactPage2 />} />
+            <Route path="/unsubscribe" element={<UnsubscribePage />} />
+            <Route path="/process/:id" element={<ProcessDetailPage />} />
+            <Route path="/client-portal" element={<ClientPortal />} />
+            <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+            <Route path="/checkout/error" element={<CheckoutErrorPage />} />
+            <Route path="/checkout/cancel" element={<CheckoutCancelPage />} />
+            <Route path="/appointments" element={<AppointmentsPage />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            {/* Protected Routes: apenas dashboard e profile */}
+            <Route element={<AuthProtect />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </Route>
+          </Routes>
+        </Suspense>
+        {showFooter && <Footer />}
+      </div>
+    </ThemeProvider>
   )
 }

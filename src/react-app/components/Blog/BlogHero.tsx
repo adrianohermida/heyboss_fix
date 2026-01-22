@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../styles/ThemeProvider';
+import { useTheme } from '../../../styles/ThemeProvider';
 const BlogHero: React.FC = () => {
   const { mode } = useTheme();
   return (
