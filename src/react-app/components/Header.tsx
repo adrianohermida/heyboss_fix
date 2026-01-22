@@ -272,7 +272,6 @@ const Header = () => {
                       <User size={20} />
                       Meu Perfil
                     </Link>
-                  </div>
                 </div>
               )}
             </nav>
@@ -282,6 +281,15 @@ const Header = () => {
     </header>
   );
 };
+
+export default Header;
+
+	          </div>
+	        )}
+	      </div>
+	    </header>
+	  );
+}
 
 export default Header;
 

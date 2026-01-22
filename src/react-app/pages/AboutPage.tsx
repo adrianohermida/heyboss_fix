@@ -352,8 +352,8 @@ const AboutPage = () => {
         {/* Footer is now rendered globally in App.tsx */}
       </div>
       <ScrollToTopButton />
+      <Footer />
     </>
-        <Footer />
   );
 };
 
