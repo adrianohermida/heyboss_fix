@@ -18,21 +18,19 @@ const Header = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-// ...existing code...
-                Dr. Adriano Hermida Maia
-              </span>
-              <span
-                className="text-xs font-semibold uppercase tracking-wider"
-                style={{
-                  color: mode === 'clear' ? 'var(--color-success)' : '#fff',
-                  opacity: 1,
-                  fontFamily: 'inherit',
-                  letterSpacing: 2,
-                }}
-              >
-                Defesa do Superendividado
-              </span>
-            <nav className="flex items-center gap-6 ml-8">
+              <>
+                <span
+                  className="text-xs font-semibold uppercase tracking-wider"
+                  style={{
+                    color: mode === 'clear' ? 'var(--color-success)' : '#fff',
+                    opacity: 1,
+                    fontFamily: 'inherit',
+                    letterSpacing: 2,
+                  }}
+                >
+                  Defesa do Superendividado
+                </span>
+                <nav className="flex items-center gap-6 ml-8">
               <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Sobre</Link>
               <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Serviços</a>
               <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Blog</Link>
@@ -209,14 +207,8 @@ const Header = () => {
         )}
       </div>
     </header>
+    </>
   );
-}
-
-export default Header;
-	        )}
-	      </div>
-	    </header>
-	  );
 }
 
 export default Header;
