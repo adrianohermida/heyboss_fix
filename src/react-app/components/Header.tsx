@@ -9,16 +9,7 @@ import { useAuth } from '@hey-boss/users-service/react';
  *             Gerencia a navegação principal e o estado de autenticação do usuário.
  */
 
-// Componente de logo adaptável
-const LogoHM = ({ size = 48, rounded = true, bg = 'var(--color-brand)' }: { size?: number, rounded?: boolean, bg?: string }) => {
-  return (
-    <div
-      style={{ width: size, height: size, background: bg, borderRadius: rounded ? 12 : 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
-      <span style={{ color: '#fff', fontWeight: 900, fontSize: size * 0.45 }}>HM</span>
-    </div>
-  );
-};
+
 
 const Header = () => {
   const { mode } = useTheme();
@@ -64,23 +55,23 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Desktop theme switcher (direita do header) - removed */}
           <Link to="/" className="flex items-center gap-4 group">
-            <LogoHM size={48} rounded={true} bg={mode === 'clear' ? '#394a66' : 'var(--color-brand)'} />
+            <img src="/logo.png" alt="HM Advocacia Logo" style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--color-brand)' }} />
             <div className="flex flex-col ml-2">
-              <span className="font-extrabold text-lg leading-tight" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', textShadow: mode === 'clear' ? 'none' : '0 1px 4px #394a6640' }}>
-                Dr. Adriano Hermida Maia
+              <span className="font-extrabold text-lg leading-tight" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)', fontFamily: 'inherit', textShadow: mode === 'clear' ? 'none' : '0 1px 4px #173D3440' }}>
+                HM ADVOCACIA
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', opacity: 1 }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)', opacity: 1, fontFamily: 'inherit' }}>
                 Defesa do Superendividado
               </span>
             </div>
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Início</Link>
-            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Sobre</Link>
-            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Serviços</a>
-            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Blog</Link>
-            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Contato</Link>
+            <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Início</Link>
+            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Sobre</Link>
+            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Serviços</a>
+            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Blog</Link>
+            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Contato</Link>
             
             {user ? (
               <div className="relative" ref={menuRef}>

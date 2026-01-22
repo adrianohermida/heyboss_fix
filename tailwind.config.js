@@ -10,13 +10,13 @@ export default {
       colors: {
         brand: {
           dark: 'var(--color-bg)',
-          primary: 'var(--color-brand)',
-          accent: 'var(--color-accent)',
-          elevated: 'var(--color-cardElevated)',
+          primary: 'var(--color-brand)', // #173D34
+          accent: 'var(--color-accent)', // #00d969
+          elevated: 'var(--color-cardElevated)', // #F1F5ED
           secondary: 'var(--color-bg)',
         },
         text: {
-          DEFAULT: 'var(--color-text)',
+          DEFAULT: 'var(--color-text)', // #173D34 ou #F1F5ED
           secondary: 'var(--color-text-secondary)',
           tertiary: 'var(--color-text-tertiary)',
         },
@@ -27,11 +27,11 @@ export default {
         border: {
           DEFAULT: 'var(--color-border)',
         },
-        success: 'var(--color-success)',
+        success: 'var(--color-success)', // #00d969
         error: 'var(--color-error)',
         warning: 'var(--color-warning)',
         info: 'var(--color-info)',
-        white: 'var(--color-white)',
+        white: 'var(--color-white)', // #fff ou #F1F5ED
         footer: 'var(--color-footerBg)',
       },
       fontFamily: {

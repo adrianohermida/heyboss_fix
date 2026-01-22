@@ -21,18 +21,18 @@ const BlogPostCard: React.FC<Props> = ({ post, category }) => (
         />
       </picture>
       <div className="absolute top-4 left-4">
-        <span style={{ background: 'var(--color-success)', color: 'var(--color-on-success, #fff)' }} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg">{category?.nome || 'Artigo'}</span>
+        <span style={{ background: 'var(--color-success)', color: '#fff' }} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg">{category?.nome || 'Artigo'}</span>
       </div>
     </Link>
     <div className="p-6 flex flex-col flex-1">
-      <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-tertiary)' }}>
+      <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-success)' }}>
         <Calendar size={14} style={{ color: 'var(--color-success)' }} />
         {new Date(post.data_publicacao || post.created_at).toLocaleDateString('pt-BR')}
       </div>
       <Link to={`/blog/${post.slug}`} aria-label={`Abrir artigo: ${post.titulo}`}>
-        <h3 className="text-lg md:text-xl font-bold mb-2 leading-tight line-clamp-2" style={{ color: 'var(--color-brand)' }}>{post.titulo}</h3>
+        <h3 className="text-lg md:text-xl font-bold mb-2 leading-tight line-clamp-2" style={{ color: 'var(--color-success)' }}>{post.titulo}</h3>
       </Link>
-      <p className="text-sm leading-relaxed mb-4 line-clamp-3 flex-1" style={{ color: 'var(--color-text-secondary)' }}>{post.resumo || post.meta_descricao}</p>
+      <p className="text-sm leading-relaxed mb-4 line-clamp-3 flex-1" style={{ color: 'var(--color-brand)' }}>{post.resumo || post.meta_descricao}</p>
       <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 font-bold text-sm group/btn focus-visible:ring-2" style={{ color: 'var(--color-success)' }} aria-label={`Ler artigo completo: ${post.titulo}`}>
         Ler Artigo Completo
         <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />

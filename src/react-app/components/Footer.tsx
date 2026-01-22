@@ -9,12 +9,12 @@ export default function Footer() {
           {/* Branding e institucional */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="bg-[var(--color-brand-primary)] rounded-xl overflow-hidden w-10 h-10 flex items-center justify-center">
-                <img src="https://heyboss.heeyo.ai/user-assets/logo_lzI6JHzO.png" alt="Logo" className="w-full h-full object-cover" />
+              <div className="bg-[var(--color-brand)] rounded-xl overflow-hidden w-10 h-10 flex items-center justify-center">
+                <img src="/logo.png" alt="Logo HM Advocacia" className="w-full h-full object-cover" />
               </div>
-              <span className="text-white font-extrabold text-lg">Dr. Adriano Hermida Maia</span>
+              <span className="text-[var(--color-success)] font-extrabold text-lg">HM ADVOCACIA</span>
             </div>
-            <p className="text-white text-sm leading-relaxed">
+            <p className="text-[var(--color-text)] text-sm leading-relaxed">
               Advocacia especializada em defesa do consumidor e superendividamento. Atuação nacional com foco em resultados e dignidade humana.
             </p>
             <div className="flex gap-4">

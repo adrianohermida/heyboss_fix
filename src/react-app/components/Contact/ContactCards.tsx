@@ -16,14 +16,14 @@ const ContactCards: React.FC = () => (
         href={item.link}
         target={item.link.startsWith('http') ? '_blank' : undefined}
         rel="noopener noreferrer"
-        className="bg-[var(--color-cardElevated)] p-8 rounded-3xl border border-[var(--color-border)]/20 hover:border-[var(--color-brand-primary)]/40 shadow-md transition-all group text-center"
+        className="bg-[var(--color-cardElevated)] p-8 rounded-3xl border border-[var(--color-border)]/20 hover:border-[var(--color-success)]/40 shadow-md transition-all group text-center"
         aria-label={item.title}
       >
-        <div className={`${item.bg} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}> 
-          <item.icon className="text-[var(--color-brand-primary)]" size={28} aria-hidden />
+        <div className={`bg-[var(--color-success)]/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
+          <item.icon className="text-[var(--color-success)]" size={28} aria-hidden />
         </div>
-        <h3 className="text-xl font-bold mb-2 text-[var(--color-text)] dark:text-white">{item.title}</h3>
-        <p className="text-[var(--color-text-secondary)]/80 font-medium dark:text-white/70">{item.value}</p>
+        <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-success)' }}>{item.title}</h3>
+        <p className="text-[var(--color-brand)]/80 font-medium">{item.value}</p>
       </a>
     ))}
   </div>
