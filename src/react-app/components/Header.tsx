@@ -35,19 +35,19 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 w-full z-50 border-b shadow-md"
+      className="fixed top-0 w-full z-50 border-b shadow-lg transition-all duration-300"
       style={mode === 'clear'
         ? {
-            background: '#fff',
-            color: '#394a66',
-            boxShadow: '0 2px 12px 0 #394a6610',
-            borderBottom: '1.5px solid #e5eaf2'
+            background: 'linear-gradient(90deg, #F1F5ED 0%, #fff 100%)',
+            color: '#173D34',
+            boxShadow: '0 4px 24px 0 #173D3420',
+            borderBottom: '2px solid #e5eaf2'
           }
         : {
-            background: 'var(--color-brand)',
-            color: 'var(--color-white)',
-            boxShadow: '0 2px 12px 0 #394a6620',
-            borderBottom: '1.5px solid var(--color-border)'
+            background: 'linear-gradient(90deg, #173D34 0%, #00d969 100%)',
+            color: '#F1F5ED',
+            boxShadow: '0 4px 24px 0 #00d96930',
+            borderBottom: '2px solid #00d969'
           }
       }
     >
@@ -55,12 +55,14 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Desktop theme switcher (direita do header) - removed */}
           <Link to="/" className="flex items-center gap-4 group">
-            <img src="/logo.png" alt="HM Advocacia Logo" style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--color-brand)' }} />
+            <span className="inline-flex items-center justify-center rounded-2xl shadow-lg border-2 border-[var(--color-success)] bg-white dark:bg-[var(--color-brand)] transition-all" style={{ width: 52, height: 52 }}>
+              <img src="/assets/img/logo_lzI6JHzO.webp" alt="Logo Dr. Adriano Hermida Maia" style={{ width: 40, height: 40, objectFit: 'contain', filter: mode === 'clear' ? 'none' : 'brightness(1.2) contrast(1.1)' }} onError={(e) => { e.currentTarget.src = '/assets/img/473411138_1420160585659716_5467583944226702322_n.png'; }} />
+            </span>
             <div className="flex flex-col ml-2">
-              <span className="font-extrabold text-lg leading-tight" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)', fontFamily: 'inherit', textShadow: mode === 'clear' ? 'none' : '0 1px 4px #173D3440' }}>
-                HM ADVOCACIA
+              <span className="font-extrabold text-xl leading-tight tracking-tight" style={{ color: mode === 'clear' ? '#173D34' : '#F1F5ED', fontFamily: 'inherit', textShadow: mode === 'clear' ? 'none' : '0 2px 8px #00d96940' }}>
+                Dr. Adriano Hermida Maia
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)', opacity: 1, fontFamily: 'inherit' }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: mode === 'clear' ? '#00d969' : '#F1F5ED', opacity: 1, fontFamily: 'inherit', letterSpacing: 2 }}>
                 Defesa do Superendividado
               </span>
             </div>

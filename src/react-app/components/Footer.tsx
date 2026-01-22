@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-brand)] pt-20 pb-10 border-t border-white/10">
+    <footer className="pt-20 pb-10 border-t border-white/10 transition-all duration-300" style={{ background: 'linear-gradient(90deg, #173D34 0%, #00d969 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Branding e institucional */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="bg-[var(--color-brand)] rounded-xl overflow-hidden w-10 h-10 flex items-center justify-center">
-                <img src="/logo.png" alt="Logo HM Advocacia" className="w-full h-full object-cover" />
-              </div>
-              <span className="text-[var(--color-success)] font-extrabold text-lg">HM ADVOCACIA</span>
+              <span className="inline-flex items-center justify-center rounded-2xl shadow-lg border-2 border-[var(--color-success)] bg-white dark:bg-[var(--color-brand)] transition-all" style={{ width: 44, height: 44 }}>
+                <img src="/assets/img/logo_lzI6JHzO.webp" alt="Logo Dr. Adriano Hermida Maia" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.src = '/assets/img/473411138_1420160585659716_5467583944226702322_n.png'; }} />
+              </span>
+              <span className="text-white font-extrabold text-lg tracking-tight" style={{ textShadow: '0 2px 8px #00d96940' }}>Dr. Adriano Hermida Maia</span>
             </div>
             <p className="text-[var(--color-text)] text-sm leading-relaxed">
               Advocacia especializada em defesa do consumidor e superendividamento. Atuação nacional com foco em resultados e dignidade humana.
