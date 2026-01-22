@@ -40,65 +40,19 @@ const Header = () => {
 
   function handleLogout() {
     logout();
-    return (
-      <header
-        className="fixed top-0 w-full z-50 border-b shadow-md"
-        style={mode === 'clear'
-          ? {
-              background: '#fff',
-              color: '#394a66',
-              boxShadow: '0 2px 12px 0 #394a6610',
-              borderBottom: '1.5px solid #e5eaf2'
-            }
-          : {
-              background: 'var(--color-brand)',
-              color: 'var(--color-white)',
-              boxShadow: '0 2px 12px 0 #394a6620',
-              borderBottom: '1.5px solid var(--color-border)'
-            }
-        }
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-row items-center h-20 w-full relative">
-            {/* Logo e título */}
-            <div className="flex flex-row items-center gap-4 min-w-0">
-              <Link to="/" className="flex items-center gap-4 group min-w-0">
-                <LogoHM size={48} rounded={true} bg={mode === 'clear' ? '#394a66' : 'var(--color-brand)'} />
-                <div className="flex flex-col ml-2 truncate">
-                  <span className="font-extrabold text-lg leading-tight truncate" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', textShadow: mode === 'clear' ? 'none' : '0 1px 4px #394a6640' }}>
-                    Dr. Adriano Hermida Maia
-                  </span>
-                  <span className="text-xs font-semibold uppercase tracking-wider truncate" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)', opacity: 1 }}>
-                    Defesa do Superendividado
-                  </span>
-                </div>
-              </Link>
-            </div>
-            {/* Navegação centralizada e espaçada */}
-            <nav className="hidden lg:flex flex-1 items-center justify-center gap-10">
-              <Link to="/" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Início</Link>
-              <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Sobre</Link>
-              <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Serviços</a>
-              <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Blog</Link>
-              <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? '#394a66' : 'var(--color-white)' }}>Contato</Link>
-            </nav>
-            {/* Login/User e switcher alinhados à direita */}
-            <div className="flex items-center gap-4 ml-auto">
-              <div className="hidden lg:flex items-center">
-                {/* login/user menu aqui (mantém lógica anterior) */}
-                {/* ... */}
-              </div>
-              <div className="hidden lg:flex">
-                <ThemeSwitcher />
-              </div>
-              {/* Mobile Menu Button */}
-              <div className="lg:hidden flex items-center gap-4">
-                {/* ...mobile menu... */}
-                <ThemeSwitcher />
-              </div>
-            </div>
-          </div>
-        </div>
+  }
+
+  return (
+    <header
+      className="fixed top-0 w-full z-50 border-b shadow-md"
+      style={mode === 'clear'
+        ? {
+            background: '#fff',
+            color: '#394a66',
+            boxShadow: '0 2px 12px 0 #394a6610',
+            borderBottom: '1.5px solid #e5eaf2'
+          }
+        : {
             background: 'var(--color-brand)',
             color: 'var(--color-white)',
             boxShadow: '0 2px 12px 0 #394a6620',
@@ -108,10 +62,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Desktop theme switcher (direita do header) */}
-          <div className="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 z-10">
-            <ThemeSwitcher />
-          </div>
+          {/* Desktop theme switcher (direita do header) - removed */}
           <Link to="/" className="flex items-center gap-4 group">
             <LogoHM size={48} rounded={true} bg={mode === 'clear' ? '#394a66' : 'var(--color-brand)'} />
             <div className="flex flex-col ml-2">
@@ -229,8 +180,7 @@ const Header = () => {
             >
               {isMobileMenuOpen ? <X size={28} strokeWidth={2.2} /> : <Menu size={28} strokeWidth={2.2} />}
             </button>
-            {/* Modern theme toggle button (mobile) */}
-            <ThemeSwitcher />
+            {/* Modern theme toggle button (mobile) - removed */}
           </div>
         </div>
       </div>
