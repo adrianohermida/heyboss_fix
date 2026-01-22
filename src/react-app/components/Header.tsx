@@ -215,72 +215,70 @@ const Header = () => {
             </button>
             {/* Modern theme toggle button (mobile) - removed */}
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className={`lg:hidden fixed inset-0 top-20 z-40 animate-in slide-in-from-top duration-300 border-t border-white/5`} style={mode === 'clear' ? { background: '#fff' } : { background: '#181c2a', backdropFilter: 'blur(8px)' }}>
-          <nav className="flex flex-col p-6 gap-6 overflow-y-auto max-h-[calc(100vh-5rem)]">
-            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Início</Link>
-            <Link to="/about2" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Sobre</Link>
-            <a href="/#serviços" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Serviços</a>
-            <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Blog</Link>
-            <Link to="/contact2" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Contato</Link>
-            {!user && (
-              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-brand-primary text-white text-center py-4 rounded-xl font-bold text-lg mt-4">
-                Fazer Login
-              </Link>
-            )}
-            {user && (
-              <div className="space-y-4 pt-4 border-t border-white/10">
-                <div className="flex items-center gap-3 px-2">
-                  <div className="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold">
-                    {user.name?.[0] || user.email?.[0].toUpperCase()}
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className={`lg:hidden fixed inset-0 top-20 z-40 animate-in slide-in-from-top duration-300 border-t border-white/5`} style={mode === 'clear' ? { background: '#fff' } : { background: '#181c2a', backdropFilter: 'blur(8px)' }}>
+            <nav className="flex flex-col p-6 gap-6 overflow-y-auto max-h-[calc(100vh-5rem)]">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Início</Link>
+              <Link to="/about2" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Sobre</Link>
+              <a href="/#serviços" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Serviços</a>
+              <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Blog</Link>
+              <Link to="/contact2" onClick={() => setIsMobileMenuOpen(false)} className="text-lg md:text-xl font-bold border-b border-white/5 pb-4 focus-visible:ring-2 focus-visible:ring-brand-primary" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>Contato</Link>
+              {!user && (
+                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-brand-primary text-white text-center py-4 rounded-xl font-bold text-lg mt-4">
+                  Fazer Login
+                </Link>
+              )}
+              {user && (
+                <div className="space-y-4 pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-3 px-2">
+                    <div className="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold">
+                      {user.name?.[0] || user.email?.[0].toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>{user.name || user.email.split('@')[0]}</p>
+                      <p className="text-xs" style={mode === 'clear' ? { color: '#394a66', opacity: 0.4 } : { color: '#fff', opacity: 0.4 }}>{user.email}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-sm" style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff' }}>{user.name || user.email.split('@')[0]}</p>
-                    <p className="text-xs" style={mode === 'clear' ? { color: '#394a66', opacity: 0.4 } : { color: '#fff', opacity: 0.4 }}>{user.email}</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-2">
-                  {isAdmin && (
+                  <div className="grid grid-cols-1 gap-2">
+                    {isAdmin && (
+                      <Link 
+                        to="/dashboard" 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center gap-3 p-3 rounded-xl bg-brand-primary/20 text-brand-primary font-bold"
+                      >
+                        <LayoutDashboard size={20} />
+                        Meu Escritório (Admin)
+                      </Link>
+                    )}
                     <Link 
-                      to="/dashboard" 
+                      to="/account" 
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-brand-primary/20 text-brand-primary font-bold"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
+                      style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.7 }}
                     >
                       <LayoutDashboard size={20} />
-                      Meu Escritório (Admin)
+                      Meu Painel (Cliente)
                     </Link>
-                  )}
-                  <Link 
-                    to="/account" 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
-                    style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.7 }}
-                  >
-                    <LayoutDashboard size={20} />
-                    Meu Painel (Cliente)
-                  </Link>
-                  <Link 
-                    to="/perfil" 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
-                    style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.7 }}
-                  >
-                    <User size={20} />
-                    Meu Perfil
-                  </Link>
+                    <Link 
+                      to="/perfil" 
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
+                      style={mode === 'clear' ? { color: '#394a66' } : { color: '#fff', opacity: 0.7 }}
+                    >
+                      <User size={20} />
+                      Meu Perfil
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            )}
-          </nav>
-        </div>
-      )}
+              )}
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
-
 };
 
 export default Header;
