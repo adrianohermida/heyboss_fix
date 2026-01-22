@@ -1,6 +1,7 @@
 //
 import React, { useState, useRef, useEffect } from 'react';
 import { useTheme } from '../../styles/ThemeProvider';
+import { Moon, Sun } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, LogOut, Briefcase, ChevronDown, LayoutDashboard, Menu, X, Shield, Settings } from 'lucide-react';
 import { useAuth } from '@hey-boss/users-service/react';
@@ -12,7 +13,7 @@ import { useAuth } from '@hey-boss/users-service/react';
 
 
 const Header = () => {
-  const { mode } = useTheme();
+  const { mode, setMode } = useTheme();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,7 +54,15 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Desktop theme switcher (direita do header) - removed */}
+          {/* Desktop theme switcher (direita do header) */}
+          <button
+            className="hidden lg:inline-flex items-center justify-center ml-4 rounded-full p-2 border border-[var(--color-border)] bg-[var(--color-card)] hover:bg-[var(--color-cardElevated)] transition-colors"
+            aria-label="Alternar modo de cor"
+            onClick={() => setMode(mode === 'dark' ? 'clear' : 'dark')}
+            style={{ marginLeft: 24 }}
+          >
+            {mode === 'dark' ? <Sun size={22} className="text-[var(--color-success)]" /> : <Moon size={22} className="text-[var(--color-brand-primary)]" />}
+          </button>
           <Link to="/" className="flex items-center gap-4 group">
             <span
               className={`inline-flex items-center justify-center rounded-2xl shadow-lg border-2 transition-all ${mode === 'clear' ? 'border-[var(--color-success)] bg-white' : 'border-[var(--color-success)] bg-[var(--color-brand)]'}`}
@@ -183,6 +192,14 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-4">
+            {/* Mobile theme switcher */}
+            <button
+              className="inline-flex items-center justify-center rounded-full p-2 border border-[var(--color-border)] bg-[var(--color-card)] hover:bg-[var(--color-cardElevated)] transition-colors"
+              aria-label="Alternar modo de cor"
+              onClick={() => setMode(mode === 'dark' ? 'clear' : 'dark')}
+            >
+              {mode === 'dark' ? <Sun size={22} className="text-[var(--color-success)]" /> : <Moon size={22} className="text-[var(--color-brand-primary)]" />}
+            </button>
             {user && (
               <Link to={isAdmin ? "/dashboard" : "/portal"} className="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-xs">
                 {user.name?.[0] || user.email?.[0].toUpperCase()}

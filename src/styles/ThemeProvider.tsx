@@ -10,7 +10,21 @@ const ThemeContext = createContext({
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mode, setMode] = useState<ThemeMode>('dark');
+  // Dark como padrão, clear como alternativo
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    // Preferência do usuário no localStorage
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme-mode');
+      if (stored === 'clear' || stored === 'dark') return stored as ThemeMode;
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme-mode', mode);
+    }
+  }, [mode]);
 
   useEffect(() => {
     const root = document.documentElement;
