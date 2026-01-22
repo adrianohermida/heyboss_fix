@@ -19,7 +19,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
-    <header>
+    <>
+      <header>
         <span
           className="text-xs font-semibold uppercase tracking-wider"
           style={{
@@ -31,77 +32,15 @@ const Header = () => {
         >
           Defesa do Superendividado
         </span>
-        <nav className="flex items-center gap-6 ml-8">
-              <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Sobre</Link>
-              <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Serviços</a>
-              <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Blog</Link>
-              <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Contato</Link>
-              {user ? (
-                <div className="relative" ref={menuRef}>
-                <button 
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  aria-label="Abrir menu do usuário"
-                  className="flex items-center gap-3 bg-white/10 hover:bg-[var(--color-accent)] border border-white/10 rounded-full pl-2 pr-4 py-1.5 transition-all focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-                  style={{ color: 'var(--color-brand)' }}
-                >
-                  <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white font-bold text-xs">
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
-                    ) : (
-                      user.name?.[0] || user.email?.[0].toUpperCase()
-                    )}
-                  </div>
-                  <span className="text-sm font-medium hidden xl:inline" style={{ color: 'var(--color-brand)' }}>{user.name || user.email.split('@')[0]}</span>
-                  <ChevronDown size={16} className={`transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--color-brand)', opacity: 0.5 }} />
-                <header>
-                  <span
-                    className="text-xs font-semibold uppercase tracking-wider"
-                    style={{
-                      color: mode === 'clear' ? 'var(--color-success)' : '#fff',
-                      opacity: 1,
-                      fontFamily: 'inherit',
-                      letterSpacing: 2,
-                    }}
-                  >
-                    Defesa do Superendividado
-                  </span>
-                  <div className="flex items-center">
-                    <nav className="flex items-center gap-6 ml-8">
-                      <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Sobre</Link>
-                      <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Serviços</a>
-                      <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Blog</Link>
-                      <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Contato</Link>
-                      {user ? (
-                        <div className="relative" ref={menuRef}>
-                          {/* ...user menu... */}
-                        </div>
-                      ) : (
-                        <Link 
-                          to="/login" 
-                          className="px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] border border-white/20 bg-white hover:bg-[var(--color-accent)] hover:text-white shadow-md"
-                          style={{ color: 'var(--color-brand)' }}
-                          aria-label="Ir para login"
-                        >
-                          <User size={16} />
-                          Login
-                        </Link>
-                      )}
-                    </nav>
-                    {/* End nav, close flex container */}
-                  </div>
-                  <div className="lg:hidden flex items-center gap-4">
-                    <LayoutDashboard size={18} />
-                    Meu Painel (Cliente)
-                    <div className="h-px bg-white/5 my-2" />
-                    <button 
-                      onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-all"
-                    >
-                      <LogOut size={18} />
-                      Sair
-                    </button>
-                  </div>
-                )}
+        <div className="flex items-center">
+          <nav className="flex items-center gap-6 ml-8">
+            <Link to="/about2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Sobre</Link>
+            <a href="/#serviços" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Serviços</a>
+            <Link to="/blog" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Blog</Link>
+            <Link to="/contact2" className="transition-colors text-sm font-semibold hover:text-[var(--color-accent)]" style={{ color: mode === 'clear' ? 'var(--color-brand)' : 'var(--color-success)' }}>Contato</Link>
+            {user ? (
+              <div className="relative" ref={menuRef}>
+                {/* ...user menu... */}
               </div>
             ) : (
               <Link 
@@ -138,7 +77,6 @@ const Header = () => {
           >
             {isMobileMenuOpen ? <X size={28} strokeWidth={2.2} /> : <Menu size={28} strokeWidth={2.2} />}
           </button>
-          {/* Modern theme toggle button (mobile) - removed */}
         </div>
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
@@ -200,11 +138,11 @@ const Header = () => {
           </div>
         )}
       </header>
-    {/* Fragment wrapper moved outside header for correct nesting */}
     </>
   );
 }
 
 export default Header;
+
 
 
