@@ -17,23 +17,31 @@ import FinalCTA from '../components/Home/FinalCTA';
 const HomePage: React.FC = () => {
   return (
     <>
-      <div
-        className="min-h-screen"
-        style={{
-          background: 'var(--color-bg)',
-          color: 'var(--color-text)'
-        }}
-      >
+      <div className="min-h-screen w-full" style={{ background: 'var(--color-bg)', color: 'var(--color-text)' }}>
         <Header />
         <main>
           <Hero />
-          <Stats />
-          <Calculator />
-          <HowItWorks />
-          <VideoJourney />
-          <Testimonials />
-          <Services />
-          <Blog />
+          <div className="bg-[var(--color-cardElevated)]">
+            <Stats />
+          </div>
+          <div className="bg-white dark:bg-[var(--color-card)]">
+            <Calculator />
+          </div>
+          <div className="bg-[var(--color-cardElevated)]">
+            <HowItWorks />
+          </div>
+          <div className="bg-white dark:bg-[var(--color-card)]">
+            <VideoJourney />
+          </div>
+          <div className="bg-[var(--color-cardElevated)]">
+            <Testimonials />
+          </div>
+          <div className="bg-white dark:bg-[var(--color-card)]">
+            <Services />
+          </div>
+          <div className="bg-[var(--color-cardElevated)]">
+            <Blog />
+          </div>
           <FinalCTA />
         </main>
       </div>

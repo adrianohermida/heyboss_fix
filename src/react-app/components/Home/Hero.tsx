@@ -5,12 +5,11 @@ import { useTheme } from '../../../styles/ThemeProvider';
 
 const Hero: React.FC = () => {
   const { mode } = useTheme();
-  // Alterna fundo entre branco e #F1F5ED
-  const bg = mode === 'clear' ? 'bg-[var(--color-white)]' : 'bg-[var(--color-bg)]';
-  const text = mode === 'clear' ? 'text-[var(--color-brand)' : 'text-[var(--color-success)]';
+  // Alternância institucional premium de fundo
+  const bg = mode === 'clear' ? 'bg-white' : 'bg-[var(--color-bg)]';
   return (
     <section className={`relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden ${bg}`}
-      style={{ background: mode === 'clear' ? 'var(--color-white)' : 'var(--color-bg)' }}>
+      style={{ background: mode === 'clear' ? '#fff' : 'var(--color-bg)' }}>
       {/* Removido overlay degradê */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
